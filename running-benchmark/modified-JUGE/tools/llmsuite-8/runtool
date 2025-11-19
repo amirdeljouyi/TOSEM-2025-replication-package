@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# switch to environment JVM as needed
+#JAVA_HOME=/usr/lib/jvm/java-11-openjdk-arm64
+#JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd4
+
+#export JAVA_HOME=$JAVA_HOME
+
+LLMSUITE=lib/llmsuite.jar
+TOOL=lib/bbc_runtool-1.0.0.jar
+BBC=lib/evosuite-bbc.jar
+
+$JAVA_HOME/bin/java -cp $BBC:$LLMSUITE:$TOOL sbst.runtool.Main

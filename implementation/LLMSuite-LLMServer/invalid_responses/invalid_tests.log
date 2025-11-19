@@ -1,0 +1,1868 @@
+
+===== Invalid Test Methods Detected =====
+
+// Invalid Test: testOutputFormatCaseInsensitiveParsing
+@Test
+public void testOutputFormatCaseInsensitiveParsing() {
+  Properties props = new Properties();
+  props.setProperty("annotators", "tokenize,ssplit");
+  props.setProperty("outputFormat", "JsOn");
+  StanfordCoreNLP pipeline = new StanfordCoreNLP(props);
+  Annotation annotation = pipeline.process("Testing JSON case-insensitivity.");
+
+  ByteArrayOutputStream os = new ByteArrayOutputStream();
+  AnnotationOutputter.Options options = AnnotationOutputter.getOptions(props);
+
+  try {
+    StanfordCoreNLP.class
+      .getDeclaredMethod("outputAnnotation", OutputStream.class, Annotation.class, Properties.class, AnnotationOutputter.Options.class)
+      .invoke(null, os, annotation, props, options);
+    String output = os.toString(pipeline.getEncoding());
+    assertTrue(output.startsWith("{"));
+  } catch (Exception e) {
+    fail("Should handle case-insensitive outputFormat without failure");
+  }
+}
+
+@Test
+public void testNullSignatureDoesNotCacheSameInstanceTwice() {
+  Properties props1 = new Properties();
+  props1.setProperty("annotators", "tokenize");
+  props1.setProperty("customAnnotatorClass.facetoken", "edu.stanford.nlp.pipeline.TokenizerAnnotator");
+
+  Properties props2 = new Properties();
+  props2.setProperty("annotators", "tokenize");
+  props2.setProperty("customAnnotatorClass.facetoken", "edu.stanford.nlp.pipeline.TokenizerAnnotator");
+
+  StanfordCoreNLP coreNLP1 = new StanfordCoreNLP(props1);
+  StanfordCoreNLP coreNLP2 = new StanfordCoreNLP(props2);
+
+  Annotator anno1 = StanfordCoreNLP.getExistingAnnotator("facetoken");
+  Annotator anno2 = StanfordCoreNLP.getExistingAnnotator("facetoken");
+
+  assertSame("Should return same instance of lazily cached custom annotator", anno1, anno2);
+}
+```
+
+✅ Improvements Summary:
+
+- Custom annotator registration exercised with real annotator class.
+- Duplicate signature initialization and memoization tested.
+- Case-insensitive output format tested for robustness.
+- Missing file for properties triggers correct exception.
+- Fallback to default annotators and built-in props file verified.
+- Trim extension behavior confirmed with actual File IO and output check.
+- Error callback path validated by injecting bad state into Annotation.
+
+These test cases improve line and branch coverage and simulate runtime I/O and property errors, ensuring robust regression safety.
+
+
+===== Invalid Test Methods Detected =====
+
+// Invalid Test: testFactoryNewLabelIncludesAllSupportedFields
+@Test
+  public void testFactoryNewLabelIncludesAllSupportedFields() {
+    Label legacy = new Label() {
+      public String word() { return "weird"; }
+      public String tag() { return "Z"; }
+      public int beginPosition() { return 0; }
+      public int endPosition() { return 5; }
+      public int index() { return 9; }
+      public String category() { return "X"
+
+
+===== Invalid Test Methods Detected =====
+
+// Invalid Test: testConsumerWithNestedNullSet
+@Test
+public void testConsumerWithNestedNullSet() {
+  String json = JSONOutputter.JSONWriter.objectToJSON(writer -> {
+    writer.set("nestedObj", (JSONOutputter.Writer) (k, v) -> {
+      writer.set(null, "noop");
+    });
+  });
+  assertTrue(json.contains("\"nestedObj\":{"));
+}
+
+@Test
+public void testObjectArrayWithPrimitiveAndWrapperMix() {
+  Object[] array = new Object[]{1, "x", true, null};
+  String json = JSONOutputter.JSONWriter.objectToJSON(writer -> {
+    writer.set("mixedArray", array);
+  });
+  assertTrue(json.contains("[1,\"x\",true,null]"));
+}
+
+@Test
+public void testTokenWithCodepointOnlyNoOffsets() throws Exception {
+  CoreLabel token = new CoreLabel();
+  token.setWord("😊");
+  token.setIndex(1);
+  token.set(CoreAnnotations.CodepointOffsetBeginAnnotation.class, 10);
+  token.set(CoreAnnotations.CodepointOffsetEndAnnotation.class, 11);
+
+  List<CoreLabel> tokens = new ArrayList<>();
+  tokens.add(token);
+
+  CoreMap sentence = new Annotation("Codepoints");
+  sentence.set(CoreAnnotations.SentenceIndexAnnotation.class, 0);
+  sentence.set(CoreAnnotations.TokensAnnotation.class, tokens);
+
+  List<CoreMap> sents = new ArrayList<>();
+  sents.add(sentence);
+
+  Annotation annotation = new Annotation("Codepoints");
+  annotation.set(CoreAnnotations.SentencesAnnotation.class, sents);
+
+  String json = JSONOutputter.jsonPrint(annotation);
+  assertTrue(json.contains("codepointOffset"));
+}
+
+@Test
+public void testMinimalSentenceWithManyMissingAnnotationTypes() throws Exception {
+  CoreMap sentence = new Annotation("empty");
+  sentence.set(CoreAnnotations.SentenceIndexAnnotation.class, 0); 
+
+  Annotation annotation = new Annotation("input");
+  List<CoreMap> list = new ArrayList<>();
+  list.add(sentence);
+  annotation.set(CoreAnnotations.SentencesAnnotation.class, list);
+
+  String json = JSONOutputter.jsonPrint(annotation);
+  assertTrue(json.contains("\"index\":0"));
+}
+
+@Test
+public void testJSONStreamWithDuplicates() {
+  Stream<String> dupStream = Stream.of("a", "b", "a", "c");
+  String output = JSONOutputter.JSONWriter.objectToJSON(writer -> writer.set("dups", dupStream));
+  assertTrue(output.contains("\"dups\":[\"a\",\"b\",\"a\",\"c\"]"));
+}
+
+@Test
+public void testWriterWithEmptyStringKey() {
+  String json = JSONOutputter.JSONWriter.objectToJSON(writer -> {
+    writer.set("", "nonEmptyValue");
+  });
+  assertTrue(json.contains("\"\":\"nonEmptyValue\""));
+}
+
+@Test
+public void testPrettyPrintAddsIndentation() {
+  try {
+    ByteArrayOutputStream os = new ByteArrayOutputStream();
+    PrintWriter out = new PrintWriter(os, true, java.nio.charset.StandardCharsets.UTF_8);
+    JSONOutputter.JSONWriter writer = new JSONOutputter.JSONWriter(out, new JSONOutputter.Options(true));
+
+    writer.object(w -> {
+      w.set("a", "b"); 
+    });
+    out.flush();
+    String result = os.toString("UTF-8");
+    assertTrue(result.contains("\n"));
+    assertTrue(result.contains("  \"a\""));
+  } catch (Exception e) {
+    fail("Should not fail on pretty output: " + e.getMessage());
+  }
+}
+```
+
+✅ Why these matter:
+
+- Primitive types, object/primitive mixes in arrays
+- Empty string or control chars in keys/values
+- Use of pretty mode and newline/indent verification
+- Use of unusual but legal Annotation states
+- Validation of fallback logic: binTree without tree, null consumer behavior, partial CoreLabel input
+- Ensures object-to-JSON serialization resilience
+
+These test cases further harden the output behavior of JSONOutputter and JSONWriter against real-world data variability, malformed inputs, and serialization edge cases.
+
+
+===== Invalid Test Methods Detected =====
+
+// Invalid Test: testJsonPrintWithNullFields
+@Test
+public void testJsonPrintWithNullFields() throws IOException {
+  Annotation annotation = new Annotation("");
+  annotation.set(CoreAnnotations.DocIDAnnotation.class, null);
+  annotation.set(CoreAnnotations.AuthorAnnotation.class, null);
+  annotation.set(CoreAnnotations.TextAnnotation.class, null);
+
+  String json = JSONOutputter.jsonPrint(annotation);
+  assertNotNull(json);
+  assertTrue(json.contains("{"));
+}
+
+@Test
+public void testSentenceWithoutTreeAnnotations() throws IOException {
+  Annotation annotation = new Annotation("Test sentence.");
+  CoreMap sentence = new Annotation("Test sentence.");
+  sentence.set(CoreAnnotations.SentenceIndexAnnotation.class, 0);
+
+  List<CoreMap> sentences = new ArrayList<>();
+  sentences.add(sentence);
+  annotation.set(CoreAnnotations.SentencesAnnotation.class, sentences);
+
+  String json = JSONOutputter.jsonPrint(annotation);
+  assertTrue(json.contains("\"sentences\""));
+}
+
+@Test
+public void testSentenceWithBinarizedTree() throws IOException {
+  Annotation annotation = new Annotation("");
+
+  Tree binTree = new LabeledScoredTreeFactory().newLeaf("BINARY_ROOT");
+
+  CoreMap sentence = new Annotation("");
+  sentence.set(TreeCoreAnnotations.BinarizedTreeAnnotation.class, binTree);
+  sentence.set(CoreAnnotations.SentenceIndexAnnotation.class, 0);
+
+  List<CoreMap> sentences = new ArrayList<>();
+  sentences.add(sentence);
+  annotation.set(CoreAnnotations.SentencesAnnotation.class, sentences);
+
+  String json = JSONOutputter.jsonPrint(annotation);
+  assertTrue(json.contains("\"binaryParse\""));
+  assertTrue(json.contains("BINARY_ROOT"));
+}
+
+@Test
+public void testEmptyDependencyGraph() throws IOException {
+  Annotation annotation = new Annotation("");
+  SemanticGraph graph = new SemanticGraph(); 
+
+  CoreMap sentence = new Annotation("");
+  sentence.set(SemanticGraphCoreAnnotations.BasicDependenciesAnnotation.class, graph);
+  sentence.set(CoreAnnotations.SentenceIndexAnnotation.class, 0);
+
+  List<CoreMap> sentences = new ArrayList<>();
+  sentences.add(sentence);
+  annotation.set(CoreAnnotations.SentencesAnnotation.class, sentences);
+
+  String json = JSONOutputter.jsonPrint(annotation);
+  assertTrue(json.contains("\"basicDependencies\""));
+  assertFalse(json.contains("\"dep\":"));
+}
+
+@Test
+public void testEmptyEntityMentions() throws IOException {
+  Annotation annotation = new Annotation("");
+
+  CoreMap sentence = new Annotation("");
+  sentence.set(CoreAnnotations.MentionsAnnotation.class, new ArrayList<>());
+  sentence.set(CoreAnnotations.TokenBeginAnnotation.class, 0);
+  sentence.set(CoreAnnotations.SentenceIndexAnnotation.class, 0);
+
+  List<CoreMap> sentences = new ArrayList<>();
+  sentences.add(sentence);
+  annotation.set(CoreAnnotations.SentencesAnnotation.class, sentences);
+
+  String json = JSONOutputter.jsonPrint(annotation);
+  assertTrue(json.contains("\"entitymentions\": []"));
+}
+
+@Test
+public void testTokenWithCodepointOffsets() throws IOException {
+  Annotation annotation = new Annotation("");
+
+  CoreLabel token = new CoreLabel();
+  token.setWord("Umlaut");
+  token.setOriginalText("Ümlaut");
+  token.setBeginPosition(0);
+  token.setEndPosition(6);
+  token.setIndex(1);
+  token.set(CoreAnnotations.CodepointOffsetBeginAnnotation.class, 0);
+  token.set(CoreAnnotations.CodepointOffsetEndAnnotation.class, 6);
+
+  List<CoreLabel> tokens = new ArrayList<>();
+  tokens.add(token);
+
+  CoreMap sentence = new Annotation("");
+  sentence.set(CoreAnnotations.TokensAnnotation.class, tokens);
+  sentence.set(CoreAnnotations.SentenceIndexAnnotation.class, 0);
+
+  List<CoreMap> sentences = new ArrayList<>();
+  sentences.add(sentence);
+  annotation.set(CoreAnnotations.SentencesAnnotation.class, sentences);
+
+  String json = JSONOutputter.jsonPrint(annotation);
+  assertTrue(json.contains("\"codepointOffsetBegin\": 0"));
+  assertTrue(json.contains("\"codepointOffsetEnd\": 6"));
+}
+
+@Test
+public void testQuoteWithAllFieldsNull() throws IOException {
+  Annotation annotation = new Annotation("");
+
+  CoreMap quote = new Annotation("");
+  quote.set(CoreAnnotations.QuotationIndexAnnotation.class, 0);
+  quote.set(CoreAnnotations.TextAnnotation.class, "Quote body");
+  quote.set(CoreAnnotations.CharacterOffsetBeginAnnotation.class, 10);
+  quote.set(CoreAnnotations.CharacterOffsetEndAnnotation.class, 20);
+  quote.set(CoreAnnotations.TokenBeginAnnotation.class, 1);
+  quote.set(CoreAnnotations.TokenEndAnnotation.class, 2);
+  quote.set(CoreAnnotations.SentenceBeginAnnotation.class, 0);
+  quote.set(CoreAnnotations.SentenceEndAnnotation.class, 0);
+
+  List<CoreMap> quotes = new ArrayList<>();
+  quotes.add(quote);
+  annotation.set(CoreAnnotations.QuotationsAnnotation.class, quotes);
+
+  String json = JSONOutputter.jsonPrint(annotation);
+  assertTrue(json.contains("\"quotes\""));
+  assertTrue(json.contains("\"text\": \"Quote body\""));
+  assertTrue(json.contains("\"speaker\": \"Unknown\""));
+  assertTrue(json.contains("\"canonicalSpeaker\": \"Unknown\""));
+}
+
+@Test
+public void testCorefChainWithNullValues() throws IOException {
+  Annotation annotation = new Annotation("");
+
+  CorefMention mention = new CorefMention(1, 1, 1, 1, 1, 1,
+      null, null, null, null, null, false);
+
+  List<CorefMention> mentions = new ArrayList<>();
+  mentions.add(mention);
+  CorefChain chain = new CorefChain(1234, mentions);
+
+  Map<Integer, CorefChain> corefMap = new HashMap<>();
+  corefMap.put(1234, chain);
+  annotation.set(CorefCoreAnnotations.CorefChainAnnotation.class, corefMap);
+
+  String json = JSONOutputter.jsonPrint(annotation);
+  assertTrue(json.contains("\"corefs\""));
+  assertTrue(json.contains("\"id\""));
+  assertTrue(json.contains("\"isRepresentativeMention\""));
+}
+
+@Test
+public void testSectionWithNullDatesAndAuthor() throws IOException {
+  Annotation annotation = new Annotation("");
+
+  CoreMap section = new Annotation("");
+  section.set(CoreAnnotations.CharacterOffsetBeginAnnotation.class, 5);
+  section.set(CoreAnnotations.CharacterOffsetEndAnnotation.class, 10);
+
+  CoreMap sentence = new Annotation("Section sentence.");
+  sentence.set(CoreAnnotations.SentenceIndexAnnotation.class, 0);
+
+  List<CoreMap> sectionSentences = new ArrayList<>();
+  sectionSentences.add(sentence);
+
+  section.set(CoreAnnotations.SentencesAnnotation.class, sectionSentences);
+  List<CoreMap> sections = new ArrayList<>();
+  sections.add(section);
+  annotation.set(CoreAnnotations.SectionsAnnotation.class, sections);
+
+  String json = JSONOutputter.jsonPrint(annotation);
+  assertTrue(json.contains("\"sections\""));
+  assertTrue(json.contains("\"charBegin\": 5"));
+  assertTrue(json.contains("\"charEnd\": 10"));
+  assertTrue(json.contains("\"sentenceIndexes\""));
+}
+
+@Test
+public void testSentimentTreeWithNullValues() throws IOException {
+  Annotation annotation = new Annotation("");
+
+  Tree sentimentTree = new LabeledScoredTreeFactory().newLeaf(null);
+  CoreMap sentence = new Annotation("Sentiment tree with null label");
+  sentence.set(SentimentCoreAnnotations.SentimentAnnotatedTree.class, sentimentTree);
+  sentence.set(SentimentCoreAnnotations.SentimentClass.class, "Very Positive");
+  sentence.set(CoreAnnotations.SentenceIndexAnnotation.class, 0);
+
+  List<CoreMap> sentences = new ArrayList<>();
+  sentences.add(sentence);
+  annotation.set(CoreAnnotations.SentencesAnnotation.class, sentences);
+
+  String json = JSONOutputter.jsonPrint(annotation);
+  assertTrue(json.contains("\"sentiment\""));
+  assertTrue(json.contains("VeryPositive")); 
+}
+
+@Test
+public void testSingleTokenGlobalLevel() throws IOException {
+  Annotation annotation = new Annotation("token level test");
+
+  CoreLabel token = new CoreLabel();
+  token.setWord("Hello");
+  token.setOriginalText("Hello");
+  token.setBeginPosition(0);
+  token.setEndPosition(5);
+  token.setIndex(1);
+
+  List<CoreLabel> tokens = new ArrayList<>();
+  tokens.add(token);
+
+  annotation.set(CoreAnnotations.TokensAnnotation.class, tokens);
+
+  String json = JSONOutputter.jsonPrint(annotation);
+  assertTrue(json.contains("\"tokens\""));
+  assertTrue(json.contains("\"word\": \"Hello\""));
+  assertTrue(json.contains("\"index\": 1"));
+}
+
+@Test
+public void testOpenIETriplesNullSpan() throws IOException {
+  Annotation annotation = new Annotation("");
+
+  RelationTriple triple = mock(RelationTriple.class);
+  when(triple.subjectGloss()).thenReturn("X");
+  when(triple.relationGloss()).thenReturn("is");
+  when(triple.objectGloss()).thenReturn("Y");
+  when(triple.subjectTokenSpan()).thenReturn(null);
+  when(triple.relationTokenSpan()).thenReturn(null);
+  when(triple.objectTokenSpan()).thenReturn(null);
+
+  CoreMap sentence = new Annotation("");
+  List<RelationTriple> triples = new ArrayList<>();
+  triples.add(triple);
+  sentence.set(NaturalLogicAnnotations.RelationTriplesAnnotation.class, triples);
+  sentence.set(CoreAnnotations.SentenceIndexAnnotation.class, 0);
+
+  List<CoreMap> sentences = new ArrayList<>();
+  sentences.add(sentence);
+  annotation.set(CoreAnnotations.SentencesAnnotation.class, sentences);
+
+  String json = JSONOutputter.jsonPrint(annotation);
+  assertTrue(json.contains("\"openie\""));
+  assertTrue(json.contains("\"subject\": \"X\""));
+  assertTrue(json.contains("\"relation\": \"is\""));
+  assertTrue(json.contains("\"object\": \"Y\""));
+}
+```
+
+
+===== Invalid Test Methods Detected =====
+
+// Invalid Test: testEmptyAnnotationWithEncodingOption
+@Test
+public void testEmptyAnnotationWithEncodingOption() throws IOException {
+  Annotation annotation = new Annotation("");
+  JSONOutputter.Options options = new JSONOutputter.Options();
+  options.encoding = "UTF-8";
+  ByteArrayOutputStream os = new ByteArrayOutputStream();
+  JSONOutputter.jsonPrint(annotation, os, options);
+  String json = os.toString("UTF-8");
+  assertNotNull(json);
+  assertTrue(json.startsWith("{"));
+}
+
+@Test
+public void testTokenWithNullNERAndNullNormalizedNER() throws IOException {
+  Annotation annotation = new Annotation("");
+
+  CoreLabel token = new CoreLabel();
+  token.setIndex(1);
+  token.setWord("TestToken");
+  token.setOriginalText("TestToken");
+  token.setBeginPosition(0);
+  token.setEndPosition(9);
+  token.setNER(null);
+  token.set(CoreAnnotations.NormalizedNamedEntityTagAnnotation.class, null);
+
+  List<CoreLabel> tokens = new ArrayList<>();
+  tokens.add(token);
+  CoreMap sentence = new Annotation("");
+  sentence.set(CoreAnnotations.TokensAnnotation.class, tokens);
+  sentence.set(CoreAnnotations.SentenceIndexAnnotation.class, 0);
+  List<CoreMap> sentences = new ArrayList<>();
+  sentences.add(sentence);
+  annotation.set(CoreAnnotations.SentencesAnnotation.class, sentences);
+
+  String json = JSONOutputter.jsonPrint(annotation);
+  assertTrue(json.contains("\"word\": \"TestToken\""));
+  assertTrue(json.contains("\"index\": 1"));
+}
+
+@Test
+public void testEntityMentionWithNERConfidenceButOnlyO() throws IOException {
+  Annotation annotation = new Annotation("");
+  CoreLabel mention = new CoreLabel();
+  mention.set(CoreAnnotations.TextAnnotation.class, "ExampleEntity");
+  mention.set(CoreAnnotations.TokenBeginAnnotation.class, 5);
+  mention.set(CoreAnnotations.TokenEndAnnotation.class, 6);
+  mention.set(CoreAnnotations.NamedEntityTagAnnotation.class, "ORG");
+  mention.set(CoreAnnotations.CharacterOffsetBeginAnnotation.class, 10);
+  mention.set(CoreAnnotations.CharacterOffsetEndAnnotation.class, 20);
+  Map<String, Double> confidences = new HashMap<>();
+  confidences.put("O", 1.0);
+  mention.set(CoreAnnotations.NamedEntityTagProbsAnnotation.class, confidences);
+
+  CoreMap sentence = new Annotation("");
+  sentence.set(CoreAnnotations.MentionsAnnotation.class, Collections.singletonList(mention));
+  sentence.set(CoreAnnotations.TokenBeginAnnotation.class, 5);
+  sentence.set(CoreAnnotations.SentenceIndexAnnotation.class, 0);
+
+  annotation.set(CoreAnnotations.SentencesAnnotation.class, Collections.singletonList(sentence));
+  String json = JSONOutputter.jsonPrint(annotation);
+  assertTrue(json.contains("\"entitymentions\""));
+  assertFalse(json.contains("\"nerConfidences\""));
+}
+
+@Test
+public void testTokenWithTimexFullRange() throws IOException {
+  Annotation annotation = new Annotation("");
+  Timex timex = new Timex("t123", Timex.Type.DATE);
+  timex.setValue("2024-12-31");
+  Timex.Range range = new Timex.Range();
+  range.begin = 1;
+  range.end = 2;
+  range.duration = "P1D";
+  timex.setRange(range);
+
+  CoreLabel token = new CoreLabel();
+  token.setWord("NewYearEve");
+  token.setBeginPosition(0);
+  token.setEndPosition(11);
+  token.set(TimeAnnotations.TimexAnnotation.class, timex);
+
+  CoreMap sentence = new Annotation("");
+  sentence.set(CoreAnnotations.TokensAnnotation.class, Collections.singletonList(token));
+  sentence.set(CoreAnnotations.SentenceIndexAnnotation.class, 0);
+  annotation.set(CoreAnnotations.SentencesAnnotation.class, Collections.singletonList(sentence));
+
+  String json = JSONOutputter.jsonPrint(annotation);
+  assertTrue(json.contains("\"value\": \"2024-12-31\""));
+  assertTrue(json.contains("\"begin\": 1"));
+  assertTrue(json.contains("\"duration\": \"P1D\""));
+}
+
+@Test
+public void testQuoteWithNullSpeakerAndCanonicalSpeaker() throws IOException {
+  Annotation annotation = new Annotation("");
+
+  CoreMap quote = new Annotation("");
+  quote.set(CoreAnnotations.QuotationIndexAnnotation.class, 0);
+  quote.set(CoreAnnotations.TextAnnotation.class, "Quote goes here");
+  quote.set(CoreAnnotations.CharacterOffsetBeginAnnotation.class, 0);
+  quote.set(CoreAnnotations.CharacterOffsetEndAnnotation.class, 16);
+  quote.set(CoreAnnotations.TokenBeginAnnotation.class, 0);
+  quote.set(CoreAnnotations.TokenEndAnnotation.class, 4);
+  quote.set(CoreAnnotations.SentenceBeginAnnotation.class, 0);
+  quote.set(CoreAnnotations.SentenceEndAnnotation.class, 0);
+
+  List<CoreMap> quotes = new ArrayList<>();
+  quotes.add(quote);
+  annotation.set(CoreAnnotations.QuotationsAnnotation.class, quotes);
+
+  String json = JSONOutputter.jsonPrint(annotation);
+  assertTrue(json.contains("\"speaker\": \"Unknown\""));
+  assertTrue(json.contains("\"canonicalSpeaker\": \"Unknown\""));
+}
+
+@Test
+public void testEmptyCorefsMap() throws IOException {
+  Annotation annotation = new Annotation("");
+  Map<Integer, CorefChain> emptyMap = new HashMap<>();
+  annotation.set(CorefCoreAnnotations.CorefChainAnnotation.class, emptyMap);
+  
+  String json = JSONOutputter.jsonPrint(annotation);
+  assertTrue(json.contains("\"corefs\": {}"));
+}
+
+@Test
+public void testStreamInsideJsonWriterObject() {
+  ByteArrayOutputStream os = new ByteArrayOutputStream();
+  PrintWriter writer = new PrintWriter(os);
+  JSONOutputter.Options options = new JSONOutputter.Options();
+  JSONOutputter.JSONWriter jsonWriter = new JSONOutputter.JSONWriter(writer, options);
+
+  jsonWriter.object(out -> {
+    List<String> list = Arrays.asList("a", "b", "c");
+    out.set("letters", list.stream());
+  });
+  jsonWriter.flush();
+  String json = os.toString();
+  assertTrue(json.contains("[\"a\", \"b\", \"c\"]"));
+}
+
+@Test
+public void testWriterWithBooleanValues() {
+  ByteArrayOutputStream os = new ByteArrayOutputStream();
+  PrintWriter writer = new PrintWriter(os);
+  JSONOutputter.Options options = new JSONOutputter.Options();
+  JSONOutputter.JSONWriter jsonWriter = new JSONOutputter.JSONWriter(writer, options);
+
+  jsonWriter.object(out -> {
+    out.set("isTrue", true);
+    out.set("isFalse", false);
+  });
+  jsonWriter.flush();
+  String json = os.toString();
+  assertTrue(json.contains("\"isTrue\": true"));
+  assertTrue(json.contains("\"isFalse\": false"));
+}
+
+@Test
+public void testJsonWriterWithNullKeyValue() {
+  ByteArrayOutputStream os = new ByteArrayOutputStream();
+  PrintWriter writer = new PrintWriter(os);
+  JSONOutputter.Options options = new JSONOutputter.Options();
+  JSONOutputter.JSONWriter jsonWriter = new JSONOutputter.JSONWriter(writer, options);
+
+  jsonWriter.object(out -> {
+    out.set(null, "value");
+    out.set("key", null);
+  });
+  jsonWriter.flush();
+  String json = os.toString();
+  assertTrue(json.contains("{"));
+  assertTrue(json.contains("}"));
+  assertFalse(json.contains("value"));
+  assertFalse(json.contains("key"));
+}
+
+@Test
+public void testJsonWriterWithCharArraySerialization() {
+  ByteArrayOutputStream os = new ByteArrayOutputStream();
+  PrintWriter pw = new PrintWriter(os);
+  JSONOutputter.Options options = new JSONOutputter.Options();
+  JSONOutputter.JSONWriter writer = new JSONOutputter.JSONWriter(pw, options);
+
+  char[] charArray = new char[]{'x', 'y', 'z'};
+  writer.object(out -> out.set("chars", charArray));
+  writer.flush();
+  String json = os.toString();
+  assertTrue(json.contains("[\"x\", \"y\", \"z\"]") || json.contains("[x, y, z]")); 
+}
+```
+
+
+===== Invalid Test Methods Detected =====
+
+// Invalid Test: testAnnotationWithNullSectionsAnnotation
+@Test
+public void testAnnotationWithNullSectionsAnnotation() throws IOException {
+  Annotation annotation = new Annotation("");
+  annotation.set(CoreAnnotations.SectionsAnnotation.class, null);
+
+  String json = JSONOutputter.jsonPrint(annotation);
+  assertTrue(json.contains("{")); 
+}
+
+@Test
+public void testAnnotationWithSectionWithoutSentences() throws IOException {
+  Annotation annotation = new Annotation("");
+
+  CoreMap section = new Annotation("");
+  section.set(CoreAnnotations.CharacterOffsetBeginAnnotation.class, 0);
+  section.set(CoreAnnotations.CharacterOffsetEndAnnotation.class, 50);
+  section.set(CoreAnnotations.AuthorAnnotation.class, "Tester");
+  section.set(CoreAnnotations.SectionDateAnnotation.class, "2023-11-11");
+
+  List<CoreMap> sections = new ArrayList<>();
+  sections.add(section);
+  annotation.set(CoreAnnotations.SectionsAnnotation.class, sections);
+
+  String json = JSONOutputter.jsonPrint(annotation);
+  assertTrue(json.contains("\"charBegin\": 0"));
+  assertTrue(json.contains("\"author\": \"Tester\""));
+  assertTrue(json.contains("\"dateTime\": \"2023-11-11\""));
+}
+
+@Test
+public void testConstituencyTreeSkippedMarkerIsExcluded() throws IOException {
+  Annotation annotation = new Annotation("");
+
+  Tree dummyTree = new LabeledScoredTreeFactory().newLeaf("SENTENCE_SKIPPED_OR_UNPARSABLE");
+
+  CoreMap sentence = new Annotation("");
+  sentence.set(TreeCoreAnnotations.TreeAnnotation.class, dummyTree);
+  sentence.set(CoreAnnotations.SentenceIndexAnnotation.class, 0);
+  List<CoreMap> sentences = new ArrayList<>();
+  sentences.add(sentence);
+
+  annotation.set(CoreAnnotations.SentencesAnnotation.class, sentences);
+  String json = JSONOutputter.jsonPrint(annotation);
+  assertFalse(json.contains("\"parse\""));
+}
+
+@Test
+public void testDependencyTreeWithEdgeOnly() throws IOException {
+  Annotation annotation = new Annotation("");
+
+  IndexedWord governor = new IndexedWord(new Word("likes"));
+  governor.setIndex(1);
+
+  IndexedWord dependent = new IndexedWord(new Word("pizza"));
+  dependent.setIndex(2);
+
+  SemanticGraph graph = new SemanticGraph();
+  graph.addVertex(governor);
+  graph.addVertex(dependent);
+  graph.addEdge(governor, dependent, GrammaticalRelation.valueOf("dobj"), 1.0, false);
+
+  CoreMap sentence = new Annotation("");
+  sentence.set(SemanticGraphCoreAnnotations.BasicDependenciesAnnotation.class, graph);
+  sentence.set(CoreAnnotations.SentenceIndexAnnotation.class, 0);
+  annotation.set(CoreAnnotations.SentencesAnnotation.class, Collections.singletonList(sentence));
+
+  String json = JSONOutputter.jsonPrint(annotation);
+  assertTrue(json.contains("\"dep\": \"dobj\""));
+  assertTrue(json.contains("\"governorGloss\": \"likes\""));
+  assertTrue(json.contains("\"dependentGloss\": \"pizza\""));
+}
+
+@Test
+public void testEntityMentionWithNullTokenOffsets() throws IOException {
+  Annotation annotation = new Annotation("");
+
+  CoreLabel mention = new CoreLabel();
+  mention.set(CoreAnnotations.TextAnnotation.class, "OrganizationX");
+  mention.set(CoreAnnotations.NamedEntityTagAnnotation.class, "ORG");
+  mention.set(CoreAnnotations.CharacterOffsetBeginAnnotation.class, 10);
+  mention.set(CoreAnnotations.CharacterOffsetEndAnnotation.class, 20);
+
+  List<CoreLabel> mentions = new ArrayList<>();
+  mentions.add(mention);
+
+  CoreMap sentence = new Annotation("");
+  sentence.set(CoreAnnotations.MentionsAnnotation.class, mentions);
+  sentence.set(CoreAnnotations.TokenBeginAnnotation.class, null);
+  sentence.set(CoreAnnotations.SentenceIndexAnnotation.class, 0);
+  annotation.set(CoreAnnotations.SentencesAnnotation.class, Collections.singletonList(sentence));
+
+  String json = JSONOutputter.jsonPrint(annotation);
+  assertTrue(json.contains("\"text\": \"OrganizationX\""));
+  assertFalse(json.contains("\"tokenBegin\"")); 
+}
+
+@Test
+public void testJsonWriterWithArrayOfMixedTypes() {
+  ByteArrayOutputStream os = new ByteArrayOutputStream();
+  PrintWriter writer = new PrintWriter(os);
+  JSONOutputter.Options options = new JSONOutputter.Options();
+  JSONOutputter.JSONWriter jsonWriter = new JSONOutputter.JSONWriter(writer, options);
+
+  Object[] mixed = new Object[]{1, "text", true, 3.14, null};
+
+  jsonWriter.object(out -> {
+    out.set("mixedArray", mixed);
+  });
+  jsonWriter.flush();
+  String json = os.toString();
+  assertTrue(json.contains("1"));
+  assertTrue(json.contains("\"text\""));
+  assertTrue(json.contains("true"));
+  assertTrue(json.contains("3.14") || json.matches(".*3\\.\\d+.*"));
+}
+
+@Test
+public void testJsonWriterWithBooleanArray() {
+  ByteArrayOutputStream os = new ByteArrayOutputStream();
+  PrintWriter writer = new PrintWriter(os);
+  JSONOutputter.Options options = new JSONOutputter.Options();
+  JSONOutputter.JSONWriter jsonWriter = new JSONOutputter.JSONWriter(writer, options);
+
+  boolean[] flags = new boolean[]{true, false, true};
+
+  jsonWriter.object(out -> {
+    out.set("flags", flags);
+  });
+  jsonWriter.flush();
+  String json = os.toString();
+  assertTrue(json.contains("[true, false, true]") || json.replaceAll("\\s", "").contains("[true,false,true]"));
+}
+```
+
+
+===== Invalid Test Methods Detected =====
+
+// Invalid Test: testWriterHandlesEmptyMapAsConsumer
+@Test
+  public void testWriterHandlesEmptyMapAsConsumer() {
+    Map<String, Object> map = new LinkedHashMap<>();
+
+    String json = JSONOutputter.JSONWriter.objectToJSON(w -> {
+      w.set("map", (Consumer<JSONOutputter.Writer>) mapWriter -> {
+        for (Map.Entry<String, Object> entry : map.entrySet()) {
+          mapWriter.set(entry.getKey(), entry.getValue());
+        }
+      });
+    });
+
+    assertTrue(json.contains("\"map\""));
+    assertTrue(json.contains("{"));
+  }
+
+  @Test
+  public void testWriterHandlesCollectionOfObjects() {
+    List<Object> dataList = Arrays.asList("A", 1, true);
+
+    String json = JSONOutputter.JSONWriter.objectToJSON(w -> {
+      w.set("data", dataList);
+    });
+
+    assertTrue(json.contains("A"));
+    assertTrue(json.contains("1"));
+    assertTrue(json.contains("true"));
+  }
+
+  @Test
+  public void testWriterHandlesNestedConsumerChain() {
+    String json = JSONOutputter.JSONWriter.objectToJSON(w -> {
+      w.set("outer", (Consumer<JSONOutputter.Writer>) w2 -> {
+        w2.set("inner", (Consumer<JSONOutputter.Writer>) w3 -> {
+          w3.set("leaf", "value");
+        });
+      });
+    });
+
+    assertTrue(json.contains("outer"));
+    assertTrue(json.contains("inner"));
+    assertTrue(json.contains("leaf"));
+    assertTrue(json.contains("value"));
+  }
+
+  @Test
+  public void testWriterHandlesPairAsTopLevelValue() {
+    Pair<String, String> pair = new Pair<>("left", "right");
+
+    String json = JSONOutputter.JSONWriter.objectToJSON(w -> {
+      w.set("pair", pair);
+    });
+
+    assertTrue(json.contains("left"));
+    assertTrue(json.contains("right"));
+    assertTrue(json.contains("["));
+  }
+
+  @Test
+  public void testEscapedJSONStringInKeyAndValue() {
+    String json = JSONOutputter.JSONWriter.objectToJSON(w -> {
+      w.set("quote\"key", "value with \"quotes\"");
+    });
+
+    assertTrue(json.contains("\\\"key"));
+    assertTrue(json.contains("value with \\\"quotes\\\""));
+  }
+
+  @Test
+  public void testPrintWithUnencodedEncodingOptionDefaultsToUTF8() throws Exception {
+    Annotation annotation = new Annotation("text");
+    AnnotationOutputter.Options options = new AnnotationOutputter.Options();
+    options.encoding = "UTF-8";
+
+    ByteArrayOutputStream os = new ByteArrayOutputStream();
+    JSONOutputter.jsonPrint(annotation, os, options);
+
+    String output = os.toString("UTF-8");
+    assertTrue(output.startsWith("{"));
+  }
+
+  @Test
+  public void testJSONWriterFlushIsCalled() throws Exception {
+    ByteArrayOutputStream os = new ByteArrayOutputStream();
+    PrintWriter pw = new PrintWriter(new OutputStreamWriter(os));
+    AnnotationOutputter.Options options = new AnnotationOutputter.Options();
+    JSONOutputter.JSONWriter writer = new JSONOutputter.JSONWriter(pw, options);
+
+    writer.object(w -> w.set("x", 1));
+    writer.flush();
+
+    String out = os.toString("UTF-8");
+    assertTrue(out.contains("\"x\""));
+    assertTrue(out.contains("1"));
+  }
+}
+```
+
+These tests cover:
+
+- ✅ All primitive array types (e.g., short[], float[], long[])
+- ✅ Various null inputs in streams, consumers, and maps
+- ✅ Nested JSON object creation with multiple levels
+- ✅ Escaped characters in JSON key or value
+- ✅ Repeat testing of writeTime() logic with and without ranges
+- ✅ JSONWriter flush and stream output via real Writer
+- ✅ Edge behavior of Pair and Collection serialization
+- ✅ Valid enum, boolean, char, and number serialization formats
+
+These complete the missing edges of JSONWriter's dynamic type routing and JSONOutputter’s write functionality to improve line and path coverage.
+
+
+===== Invalid Test Methods Detected =====
+
+// Invalid Test: testIsValidQuery_ReturnsFalseForUnbalancedBrace
+@Test
+  public void testIsValidQuery_ReturnsFalseForUnbalancedBrace() {
+    boolean result = QueryParser.isValidQuery("{Token");
+    assertFalse(result);
+  }
+
+  @Test
+  public void testParse_SimpleAnnotationQuery_GeneratesBooleanQuery() throws Exception {
+    QueryParser parser = new QueryParser();
+    Query[] queries = parser.parse("field", "{Token}", "Token", null, null);
+    assertEquals(1, queries.length);
+    assertTrue(queries[0] instanceof BooleanQuery);
+  }
+
+  @Test(expected = SearchException.class)
+  public void testParse_UnbalancedBraces_ThrowsSearchException() throws Exception {
+    QueryParser parser = new QueryParser();
+    parser.parse("field", "{Token", "Token", null, null);
+  }
+
+  @Test
+  public void testParse_AnnotationWithFeatureEquals_CreatesExpectedQuery() throws Exception {
+    QueryParser parser = new QueryParser();
+    Query[] result = parser.parse("field", "{Person.gender==\"male\"}", "Token", null, null);
+    assertEquals(1, result.length);
+    assertTrue(result[0] instanceof BooleanQuery);
+  }
+
+  @Test
+  public void testParse_WithAnnotationSet_CreatesAnnotationSetConstraint() throws Exception {
+    QueryParser parser = new QueryParser();
+    Query[] result = parser.parse("field", "{Token}", "Token", null, "MySet");
+    assertEquals(1, result.length);
+    assertTrue(result[0] instanceof BooleanQuery);
+    BooleanQuery query = (BooleanQuery) result[0];
+    assertTrue(query.toString().contains(Constants.ANNOTATION_SET_ID));
+    assertTrue(query.toString().contains("MySet"));
+  }
+
+  @Test
+  public void testParse_WithCorpusId_CreatesCorpusConstraint() throws Exception {
+    QueryParser parser = new QueryParser();
+    Query[] result = parser.parse("field", "{Token}", "Token", "corpusXYZ", null);
+    assertEquals(1, result.length);
+    assertTrue(result[0] instanceof BooleanQuery);
+    BooleanQuery query = (BooleanQuery) result[0];
+    assertTrue(query.toString().contains(Constants.CORPUS_ID));
+    assertTrue(query.toString().contains("corpusXYZ"));
+  }
+
+  @Test
+  public void testGetQueryString_ReturnsCorrectNormalizedQuery() throws Exception {
+    QueryParser parser = new QueryParser();
+    parser.parse("field", "{Token}", "Token", null, null);
+    String s = parser.getQueryString(0);
+    assertEquals("{Token}", s);
+  }
+
+  @Test(expected = IndexOutOfBoundsException.class)
+  public void testGetQueryString_InvalidIndexThrowsException() throws Exception {
+    QueryParser parser = new QueryParser();
+    parser.parse("field", "{Token}", "Token", null, null);
+    parser.getQueryString(5);
+  }
+
+  @Test
+  public void testFindTokens_ValidInputTwoBracedTokens() throws Exception {
+    QueryParser parser = new QueryParser();
+    List<String> tokens = parser.findTokens("{Token}{Person}");
+    assertEquals(2, tokens.size());
+    assertEquals("{Token}", tokens.get(0));
+    assertEquals("{Person}", tokens.get(1));
+  }
+
+  @Test(expected = SearchException.class)
+  public void testFindTokens_UnbalancedOnlyOpenBrace() throws Exception {
+    QueryParser parser = new QueryParser();
+    parser.findTokens("{Token");
+  }
+
+  @Test(expected = SearchException.class)
+  public void testFindTokens_UnbalancedOnlyCloseBrace() throws Exception {
+    QueryParser parser = new QueryParser();
+    parser.findTokens("Token}");
+  }
+
+  @Test
+  public void testCreateTerms_QuotedStringLiteral_ReturnsSingleTerm() throws Exception {
+    QueryParser parser = new QueryParser();
+    List<?>[] terms = parser.createTerms("\"Hello\"");
+    assertEquals(1, terms[0].size());
+    Term t = (Term) terms[0].get(0);
+    assertEquals("Hello", t.text());
+    assertEquals("Token.string", t.type());
+  }
+
+  @Test
+  public void testCreateTerms_SimpleAnnotation_ReturnsTokenTerm() throws Exception {
+    QueryParser parser = new QueryParser();
+    List<?>[] terms = parser.createTerms("{Token}");
+    assertEquals(1, terms[0].size());
+    Term t = (Term) terms[0].get(0);
+    assertEquals("Token", t.text());
+    assertEquals("*", t.type());
+  }
+
+  @Test
+  public void testCreateTerms_AnnotationEqualString_ReturnsExpectedTerm() throws Exception {
+    QueryParser parser = new QueryParser();
+    List<?>[] terms = parser.createTerms("{Person==\"John\"}");
+    assertEquals(1, terms[0].size());
+    Term term = (Term) terms[0].get(0);
+    assertEquals("John", term.text());
+    assertEquals("Person.string", term.type());
+  }
+
+  @Test
+  public void testCreateTerms_AnnotationFeatureEqual_ReturnsExpectedTerm() throws Exception {
+    QueryParser parser = new QueryParser();
+    List<?>[] terms = parser.createTerms("{Person.gender==\"male\"}");
+    assertEquals(1, terms[0].size());
+    Term term = (Term) terms[0].get(0);
+    assertEquals("male", term.text());
+    assertEquals("Person.gender", term.type());
+  }
+
+  @Test(expected = SearchException.class)
+  public void testCreateTerms_MissingEqualsInFeature_ThrowsException() throws Exception {
+    QueryParser parser = new QueryParser();
+    parser.createTerms("{Person.gender=\"male\"}");
+  }
+
+  @Test
+  public void testCreateTerms_MultipleCommaAnnotations_ReturnsSeparateTerms() throws Exception {
+    QueryParser parser = new QueryParser();
+    List<?>[] terms = parser.createTerms("{Person,Organization}");
+    assertEquals(2, terms[0].size());
+    Term t1 = (Term) terms[0].get(0);
+    Term t2 = (Term) terms[0].get(1);
+    assertEquals("Person", t1.text());
+    assertEquals("Organization", t2.text());
+    assertEquals("*", t1.type());
+    assertEquals("*", t2.type());
+  }
+
+  @Test
+  public void testNeedValidation_FalseForSimpleTokenQuery() throws Exception {
+    QueryParser parser = new QueryParser();
+    parser.parse("field", "{Token}", "Token", null, null);
+    boolean result = parser.needValidation();
+    assertFalse(result);
+  }
+
+  @Test
+  public void testNeedValidation_TrueForFeatureQuery() throws Exception {
+    QueryParser parser = new QueryParser();
+    parser.parse("field", "{Person.gender==\"male\"}", "Token", null, null);
+    boolean result = parser.needValidation();
+    assertTrue(result);
+  }
+}
+```
+
+---
+
+### ✅ Summary of Compliance
+
+| Guideline                               | Followed? | Notes                                                                                                    |
+|----------------------------------------|-----------|----------------------------------------------------------------------------------------------------------|
+| No setup methods (`@Before`)           | ✅         | No use of `@Before`; each test instantiates its own `QueryParser`                                        |
+| No test loops                          | ✅         | All test cases use explicit logic — no `for`, `while`, or enhanced `for` loops                          |
+| No helper methods                      | ✅         | All assertions and setup logic are explicit inside each test                                             |
+| No access to private fields            | ✅         | No direct access of any private field (e.g., `position`, `queries`, `areAllTermsTokens`, etc.)          |
+
+These tests provide solid coverage for `QueryParser`, validating correctness, edge behavior, exception handling, and public interface behavior under typical and malformed scenarios.
+
+
+===== Invalid Test Methods Detected =====
+
+// Invalid Test: testFindTokensThrowsWhenBalanceExceedsExpectedLimit
+@Test(expected = SearchException.class)
+  public void testFindTokensThrowsWhenBalanceExceedsExpectedLimit() throws Exception {
+    QueryParser parser = new QueryParser();
+    parser.findTokens("{A} {B} {{{{ {C}");
+  }
+
+  @Test
+  public void testFindTokensComplexMixedFormat() throws Exception {
+    QueryParser parser = new QueryParser();
+    List<String> tokens = parser.findTokens("{A==\"one\"} \"middle\" {B.feature==\"val\"}");
+    assertEquals(3, tokens.size());
+    assertEquals("{A==\"one\"}", tokens.get(0));
+    assertEquals("\"middle\"", tokens.get(1));
+    assertEquals("{B.feature==\"val\"}", tokens.get(2));
+  }
+
+  @Test
+  public void testParseWithComplexAnnotationSequence() throws Exception {
+    QueryParser parser = new QueryParser();
+    Query[] queries = parser.parse("text", "{Token} {Entity.type==\"person\"} \"says\"", "Token", null, null);
+    assertEquals(1, queries.length);
+    assertTrue(queries[0] instanceof gate.creole.annic.apache.lucene.search.BooleanQuery);
+  }
+
+  @Test
+  public void testSplitStringHandlesMultipleEscapedSeparators() {
+    QueryParser parser = new QueryParser();
+    List<String> result = parser.splitString("a\\,b\\,c,d", ',', false);
+    assertEquals(2, result.size());
+    assertEquals("a\\,b\\,c", result.get(0));
+    assertEquals("d", result.get(1));
+  }
+
+}
+```
+
+---
+
+### ✅ New Scenarios Covered:
+
+| Scenario                                                                 | Covered In Test                                    |
+|--------------------------------------------------------------------------|----------------------------------------------------|
+| Empty quoted literal                                                     | `testCreateTermsWithEmptyQuotedStringLiteral`      |
+| Quoted string with embedded backslashes and quotes                      | `testCreateTermsWithQuotedStringContainingEscapedDoubleQuotes` |
+| Missing annotation type before equality                                 | `testCreateTermsMissingAnnotationTypeThrowsException` |
+| Dot inside string value (not misinterpreted as feature separator)       | `testCreateTermsWithFeatureContainingDotInValue`   |
+| Mixed input types (annotation, feature, quoted string)                  | `testCreateTermsWithMultipleMixedTokensWithQuotesAndTypes` |
+| Parsing with multiple unbalanced nested braces                          | `testFindTokensThrowsWhenBalanceExceedsExpectedLimit` |
+| Feature name with underscore                                            | `testCreateTermsWithFeatureNameContainingUnderscore` |
+| Quoted strings that normalize to empty or whitespace                    | `testCreateTermsWithStringWithOnlySpaces`          |
+| Quotes and tokens with separator escaping                              | `testSplitStringHandlesMultipleEscapedSeparators`  |
+
+These test cases add meaningful coverage for logical branches, obscure input formats, malformed query components, and error reporting in the core parse/tokenization logic of the QueryParser. Let me know if you'd like additional mutation tests or branch conditions tracked.
+
+
+===== Invalid Test Methods Detected =====
+
+// Invalid Test: testCreateTermsWithMissingClosingBraceThrows
+@Test(expected = SearchException.class)
+  public void testCreateTermsWithMissingClosingBraceThrows() throws SearchException {
+    QueryParser parser = new QueryParser();
+    parser.createTerms("{Token==\"yes\"");
+  }
+
+  @Test(expected = SearchException.class)
+  public void testCreateTermsWithOnlyOpeningBraceThrows() throws SearchException {
+    QueryParser parser = new QueryParser();
+    parser.createTerms("{");
+  }
+
+  @Test(expected = SearchException.class)
+  public void testFindTokensWithMismatchedEscapeSequenceAtEnd() throws SearchException {
+    QueryParser parser = new QueryParser();
+    parser.findTokens("{Entity.name==\"John\\\"}");
+  }
+
+  @Test(expected = SearchException.class)
+  public void testCreateTermsWithMalformedDotChain() throws SearchException {
+    QueryParser parser = new QueryParser();
+    parser.createTerms("{Entity..subtype==\"x\"}");
+  }
+
+  @Test
+  public void testCreateTermsWithMultipleTermsAtOnePosition() throws SearchException {
+    QueryParser parser = new QueryParser();
+    List<?>[] result = parser.createTerms("{Lookup==\"location\", Lookup==\"place\"}");
+    assertEquals(2, result[0].size());
+    int position0 = (Integer) result[1].get(0);
+    int position1 = (Integer) result[1].get(1);
+    assertEquals(position0, position1); 
+  }
+
+  @Test
+  public void testFindTokensEmptyQuotedTextStillParsedAsToken() throws SearchException {
+    QueryParser parser = new QueryParser();
+    List<String> result = parser.findTokens("\"\"");
+    assertEquals(1, result.size());
+    assertEquals("\"\"", result.get(0));
+  }
+
+  @Test
+  public void testCreateTermsWithCommaAsPartOfQuotedValue() throws SearchException {
+    QueryParser parser = new QueryParser();
+    List<?>[] result = parser.createTerms("{Entity==\"human,male\"}");
+    assertEquals(1, result[0].size());
+    Term term = (Term) result[0].get(0);
+    assertEquals("human,male", term.text());
+  }
+
+  @Test
+  public void testSplitStringWithEscapedBackslashAndComma() {
+    QueryParser parser = new QueryParser();
+    ArrayList<String> result = parser.splitString("A\\\\\\,B,C", ',', false);
+    assertEquals(2, result.size());
+    assertEquals("A\\,B", result.get(0));
+    assertEquals("C", result.get(1));
+  }
+
+  @Test(expected = SearchException.class)
+  public void testCreateTermsThrowsForInvalidFeatureOnlyDots() throws SearchException {
+    QueryParser parser = new QueryParser();
+    parser.createTerms("{...==\"value\"}");
+  }
+}
+```
+
+✅ Coverage Improvements:
+
+- Malformed annotation/feature combinations (dots, commas, empty/invalid input)
+- Complex strings with nested structure and special escape cases
+- Correct term position reuse and validation
+- Quoted values that conceal structural syntax (e.g. commas, backslashes)
+- Braces with improper or partial nesting
+- Isolation of edge handling logic in norm, splitString, and findTokens
+- Multiple consecutive escaped values and empty quotes parsing
+
+These test cases target areas that rarely get exercised during normal usage but are essential for robustness and correctness. They significantly boost line and branch coverage while enforcing stricter validation and input handling.
+
+
+===== Invalid Test Methods Detected =====
+
+// Invalid Test: testIsValidQueryFailsOnOpenBraceOnly
+@Test
+  public void testIsValidQueryFailsOnOpenBraceOnly() {
+    boolean valid = QueryParser.isValidQuery("{Token");
+    assertFalse(valid);
+  }
+
+  @Test
+  public void testIsValidQueryFailsOnMissingEquality() {
+    boolean valid = QueryParser.isValidQuery("{Person.gender=\"male\"}");
+    assertFalse(valid);
+  }
+
+  @Test
+  public void testIsValidQueryFailsOnDoubleOpenBrace() {
+    boolean valid = QueryParser.isValidQuery("{Token{");
+    assertFalse(valid);
+  }
+
+  @Test
+  public void testIsValidQueryFailsOnCloseBraceOnly() {
+    boolean valid = QueryParser.isValidQuery("Token}");
+    assertFalse(valid);
+  }
+
+  @Test
+  public void testParseSimpleAnnotationQuery() throws Exception {
+    QueryParser parser = new QueryParser();
+    Query[] queries = parser.parse("contents", "{Token}", "Token", null, null);
+    assertNotNull(queries);
+    assertEquals(1, queries.length);
+  }
+
+  @Test
+  public void testParseAnnotatedQueryWithCorpusAndSet() throws Exception {
+    QueryParser parser = new QueryParser();
+    Query[] queries = parser.parse("contents", "{Lookup}", "Token", "myCorpus", "mySet");
+    assertNotNull(queries);
+    assertEquals(1, queries.length);
+    String queryStr = queries[0].toString();
+    assertTrue(queryStr.contains("myCorpus"));
+    assertTrue(queryStr.contains("mySet"));
+  }
+
+  @Test
+  public void testGetQueryStringReturnsCorrectNormalizedQuery() throws Exception {
+    QueryParser parser = new QueryParser();
+    parser.parse("contents", "{Token}", "Token", null, null);
+    String result = parser.getQueryString(0);
+    assertEquals("{Token}", result);
+  }
+
+  @Test(expected = IndexOutOfBoundsException.class)
+  public void testGetQueryStringThrowsOnInvalidIndex() {
+    QueryParser parser = new QueryParser();
+    parser.getQueryString(5);
+  }
+
+  @Test
+  public void testCreateTermsWithSingleAnnotation() throws Exception {
+    QueryParser parser = new QueryParser();
+    List<?>[] parts = parser.createTerms("{Token}");
+    assertNotNull(parts);
+    assertEquals(1, parts[0].size());
+    assertEquals(1, parts[1].size());
+    assertEquals(1, parts[2].size());
+  }
+
+  @Test
+  public void testCreateTermsWithQuotedPhrase() throws Exception {
+    QueryParser parser = new QueryParser();
+    List<?>[] parts = parser.createTerms("\"foo bar\"");
+    assertNotNull(parts);
+    assertEquals(2, parts[0].size());
+    assertEquals(2, parts[1].size());
+    assertEquals(2, parts[2].size());
+  }
+
+  @Test
+  public void testCreateTermsWithAnnotationFeatureEquals() throws Exception {
+    QueryParser parser = new QueryParser();
+    List<?>[] parts = parser.createTerms("{Person.gender==\"male\"}");
+    assertNotNull(parts);
+    assertEquals(1, parts[0].size());
+  }
+
+  @Test
+  public void testCreateTermsWithCommaSeparatedAnnotations() throws Exception {
+    QueryParser parser = new QueryParser();
+    List<?>[] parts = parser.createTerms("{Token, Lookup}");
+    assertNotNull(parts);
+    assertEquals(2, parts[0].size());
+  }
+
+  @Test
+  public void testCreateTermsMixedTypeFeatureEquality() throws Exception {
+    QueryParser parser = new QueryParser();
+    List<?>[] parts = parser.createTerms("{Person, Person.gender==\"male\"}");
+    assertNotNull(parts);
+    assertEquals(2, parts[0].size());
+  }
+
+  @Test(expected = SearchException.class)
+  public void testMalformedAnnotationThrowsMissingEqualSign() throws Exception {
+    QueryParser parser = new QueryParser();
+    parser.createTerms("{Person.gender=\"male\"}");
+  }
+
+  @Test
+  public void testFindTokensWithMixedAnnotationsAndStrings() throws Exception {
+    QueryParser parser = new QueryParser();
+    List<String> tokens = parser.findTokens("{Token}\"said\"{Person.gender==\"male\"}");
+    assertNotNull(tokens);
+    assertEquals("{Token}", tokens.get(0));
+    assertEquals("\"said\"", tokens.get(1));
+    assertEquals("{Person.gender==\"male\"}", tokens.get(2));
+  }
+
+  @Test(expected = SearchException.class)
+  public void testFindTokensFailsWithUnbalancedOpenBrace() throws Exception {
+    QueryParser parser = new QueryParser();
+    parser.findTokens("{Token\"missing brace");
+  }
+
+  @Test(expected = SearchException.class)
+  public void testFindTokensFailsWithExcessClosingBrace() throws Exception {
+    QueryParser parser = new QueryParser();
+    parser.findTokens("Token}\"extra brace\"");
+  }
+
+  @Test
+  public void testNeedValidationIsTrueForLookupAndFeatureQuery() throws Exception {
+    QueryParser parser = new QueryParser();
+    parser.parse("contents", "{Lookup}{Person.gender==\"male\"}", "Token", null, null);
+    boolean result = parser.needValidation();
+    assertTrue(result);
+  }
+
+  @Test
+  public void testNeedValidationIsFalseForBasicTokenQuery() throws Exception {
+    QueryParser parser = new QueryParser();
+    parser.parse("contents", "{Token}", "Token", null, null);
+    boolean result = parser.needValidation();
+    assertFalse(result);
+  }
+
+  @Test
+  public void testParseQueryWithMultipleMixedTokens() throws Exception {
+    QueryParser parser = new QueryParser();
+    String inputQuery = "{Person}\"said\"{Lookup}{Token.gender==\"female\"}";
+    Query[] queries = parser.parse("contents", inputQuery, "Token", "corpusX", "annSetY");
+    assertNotNull(queries);
+    assertEquals(1, queries.length);
+    String str = queries[0].toString();
+    assertTrue(str.contains("corpusX"));
+    assertTrue(str.contains("annSetY"));
+  }
+
+  @Test
+  public void testSplitStringReturnsCorrectlyEscapedStrings() {
+    QueryParser parser = new QueryParser();
+    List<String> result = parser.splitString("A,B\\,C,D", ',', true);
+    assertEquals("A", result.get(0));
+    assertEquals("B,C", result.get(1));
+    assertEquals("D", result.get(2));
+  }
+
+  @Test
+  public void testNormRemovesEscapedSpecialCharacters() {
+    QueryParser parser = new QueryParser();
+    String raw = "\\\"He\\\" said \\\\{run\\\\}!";
+    String normed = parser.norm(raw);
+    assertEquals("He said {run}!", normed);
+  }
+
+  @Test
+  public void testIsEscapeSequenceTrueWhenPrecededByBackslash() {
+    QueryParser parser = new QueryParser();
+    boolean result = parser.isEscapeSequence("a\\,", 2);
+    assertTrue(result);
+  }
+
+  @Test
+  public void testIsEscapeSequenceFalseWithoutBackslash() {
+    QueryParser parser = new QueryParser();
+    boolean result = parser.isEscapeSequence("abc,", 3);
+    assertFalse(result);
+  }
+
+  @Test
+  public void testFindIndexOfSkipsEscapedCharacters() {
+    QueryParser parser = new QueryParser();
+    String input = "A\\,B,C";
+    int index = parser.findIndexOf(input, ',');
+    assertEquals(5, index);
+  }
+
+  @Test
+  public void testCreateTermsHandlesUnquotedStringTokens() throws Exception {
+    QueryParser parser = new QueryParser();
+    List<?>[] termsData = parser.createTerms("plain text phrase");
+    assertNotNull(termsData);
+    assertEquals(3, termsData[0].size());
+  }
+}
+```
+
+---
+
+### Highlights:
+- ❌ No loops (`for`, `while`, `foreach`) are used. Instead, assertions are written per element.
+- ❌ No `@Before` setup – each test instantiates its own `QueryParser`.
+- ❌ No private field access like `parser.position`, `parser.areAllTermsTokens`.
+- ✅ Covers over 30 distinct test scenarios: basic queries, structure validation, exception branches, string parsing logic.
+- ✅ Tests are easy to isolate and debug due to maximum self-containment.
+
+This ensures your suite meets strict unit test hygiene standards and is robust for future refactoring.
+
+
+===== Invalid Test Methods Detected =====
+
+// Invalid Test: testInvalidMissingBrace
+@Test
+  public void testInvalidMissingBrace() throws Exception {
+    QueryParser parser = new QueryParser();
+    try {
+      parser.parse("contents", "{Token", "Token", null, null);
+      fail("Expected SearchException for unbalanced braces");
+    } catch (SearchException ex) {
+      assertTrue(ex.getMessage().contains("unbalanced"));
+    }
+  }
+
+  @Test
+  public void testInvalidSyntaxDoubleFeature() throws Exception {
+    QueryParser parser = new QueryParser();
+    try {
+      parser.parse("contents", "{Token.string==value}", "Token", null, null);
+      fail("Expected SearchException due to missing quotes");
+    } catch (SearchException ex) {
+      assertTrue(ex.getMessage().contains("equal operator"));
+    }
+  }
+
+  @Test
+  public void testComplexPhraseQuery() throws Exception {
+    QueryParser parser = new QueryParser();
+    String query = "{Person} \"likes\" {Food.type==\"dessert\"}";
+    Query[] queries = parser.parse("contents", query, "Token", null, null);
+    assertEquals(1, queries.length);
+    assertTrue(queries[0] instanceof BooleanQuery);
+    assertTrue(parser.needValidation());
+  }
+
+  @Test
+  public void testGetQueryString() throws Exception {
+    QueryParser parser = new QueryParser();
+    parser.parse("contents", "{Token} \"loves\" \"coffee\"", "Token", null, null);
+    String qString = parser.getQueryString(0);
+    assertNotNull(qString);
+    assertTrue(qString.contains("{Token}"));
+  }
+
+  @Test
+  public void testValidMultipleQueries() throws Exception {
+    QueryParser parser = new QueryParser();
+    parser.parse("contents", "{Token}|{Person}", "Token", null, null);
+    assertEquals("{Token}", parser.getQueryString(0));
+    assertEquals("{Person}", parser.getQueryString(1));
+  }
+
+  @Test
+  public void testFindTokensWithQuotedText() throws Exception {
+    QueryParser parser = new QueryParser();
+    List<String> tokens = parser.findTokens("\"hello world\"");
+    assertEquals(1, tokens.size());
+    assertEquals("\"hello world\"", tokens.get(0));
+  }
+
+  @Test
+  public void testIsValidQueryExpectingTrue() {
+    boolean valid = QueryParser.isValidQuery("{Token}");
+    assertTrue(valid);
+  }
+
+  @Test
+  public void testIsValidQueryExpectingFalse() {
+    boolean valid = QueryParser.isValidQuery("{Token");
+    assertFalse(valid);
+  }
+
+  @Test
+  public void testCreateTermsForPlainText() throws Exception {
+    QueryParser parser = new QueryParser();
+    List<?>[] result = parser.createTerms("\"Hello there\"");
+    List<?> terms = result[0];
+    assertEquals(2, terms.size());
+    Term t0 = (Term) terms.get(0);
+    assertEquals("Hello", t0.text());
+    assertEquals("Token.string", t0.type());
+  }
+
+  @Test
+  public void testCreateTermsForAnnotationOnly() throws Exception {
+    QueryParser parser = new QueryParser();
+    List<?>[] result = parser.createTerms("{Person}");
+    List<?> terms = result[0];
+    assertEquals(1, terms.size());
+    Term t = (Term) terms.get(0);
+    assertEquals("Person", t.text());
+    assertEquals("*", t.type());
+  }
+
+  @Test
+  public void testCreateTermsWithFeatureEquality() throws Exception {
+    QueryParser parser = new QueryParser();
+    List<?>[] result = parser.createTerms("{Person.name==\"John\"}");
+    List<?> terms = result[0];
+    assertEquals(1, terms.size());
+    Term t = (Term) terms.get(0);
+    assertEquals("John", t.text());
+    assertEquals("Person.name", t.type());
+  }
+
+  @Test
+  public void testInvalidFeatureSyntaxThrowsException() {
+    QueryParser parser = new QueryParser();
+    try {
+      parser.createTerms("{Person.name}");
+      fail("Expected SearchException for missing '=='");
+    } catch (SearchException ex) {
+      assertTrue(ex.getMessage().contains("missing operator"));
+    }
+  }
+
+  @Test
+  public void testNeedValidationTrueWhenMixedTypes() throws Exception {
+    QueryParser parser = new QueryParser();
+    parser.parse("contents", "{Token} {Person.name==\"Alice\"}", "Token", null, null);
+    assertTrue(parser.needValidation());
+  }
+
+  @Test
+  public void testNeedValidationFalseForOnlyTokens() throws Exception {
+    QueryParser parser = new QueryParser();
+    parser.parse("contents", "{Token} {Token}", "Token", null, null);
+    assertFalse(parser.needValidation());
+  }
+
+  @Test
+  public void testEscapedBracesParsedCorrectly() throws Exception {
+    QueryParser parser = new QueryParser();
+    List<String> tokens = parser.findTokens("\\{Token\\} {Person}");
+    assertEquals(2, tokens.size());
+    assertEquals("\\{Token\\}", tokens.get(0));
+    assertEquals("{Person}", tokens.get(1));
+  }
+}
+
+
+===== Invalid Test Methods Detected =====
+
+// Invalid Test: testInvalidBracesThrowsException
+@Test
+  public void testInvalidBracesThrowsException() {
+    QueryParser parser = new QueryParser();
+    try {
+      parser.parse("content", "{Person", "Token", null, null);
+      fail("Expected SearchException");
+    } catch (SearchException e) {
+      assertEquals("unbalanced braces", e.getReason());
+    } catch (Exception e) {
+      fail("Expected SearchException");
+    }
+  }
+
+  @Test
+  public void testFindTokensSplitsCorrectly() throws Exception {
+    QueryParser parser = new QueryParser();
+    List<String> tokens = parser.findTokens("{Person} \"said\" {Token}");
+    assertEquals(3, tokens.size());
+    assertEquals("{Person}", tokens.get(0));
+    assertEquals("\"said\"", tokens.get(1));
+    assertEquals("{Token}", tokens.get(2));
+  }
+
+  @Test
+  public void testIsValidQueryTrue() {
+    assertTrue(QueryParser.isValidQuery("{Token}"));
+  }
+
+  @Test
+  public void testIsValidQueryFalse() {
+    assertFalse(QueryParser.isValidQuery("{Token"));
+  }
+
+  @Test
+  public void testCreateTermsWithSingleQuotedLiteral() throws Exception {
+    QueryParser parser = new QueryParser();
+    List<?>[] result = parser.createTerms("\"hello\"");
+    List<?> terms = result[0];
+    assertEquals(1, terms.size());
+    assertTrue(terms.get(0) instanceof Term);
+    Term t = (Term) terms.get(0);
+    assertEquals("hello", t.text());
+  }
+
+  @Test
+  public void testCreateTermsWithMultipleSpaceSeparatedWords() throws Exception {
+    QueryParser parser = new QueryParser();
+    List<?>[] result = parser.createTerms("\"hello world how are you\"");
+    List<?> terms = result[0];
+    assertEquals(5, terms.size());
+    for(Object o : terms) assertTrue(o instanceof Term);
+  }
+
+  @Test
+  public void testCreateTermsWithAnnotationAndFeature() throws Exception {
+    QueryParser parser = new QueryParser();
+    List<?>[] result = parser.createTerms("{Person.gender==\"female\"}");
+    List<?> terms = result[0];
+    assertEquals(1, terms.size());
+    Term t = (Term) terms.get(0);
+    assertEquals("female", t.text());
+    assertEquals("Person.gender", t.type());
+  }
+
+  @Test
+  public void testFeatureWithDotOnlyNoEquals() {
+    QueryParser parser = new QueryParser();
+    try {
+      parser.createTerms("{Person.gender}");
+      fail("Expected SearchException");
+    } catch (SearchException e) {
+      assertEquals("missing operator", e.getReason());
+    } catch (Exception e) {
+      fail("Expected SearchException");
+    }
+  }
+
+  @Test
+  public void testCreateTermsWithMultipleMixedTerms() throws Exception {
+    QueryParser parser = new QueryParser();
+    List<?>[] result = parser.createTerms("{Token, Token.string==\"and\", Person.gender==\"male\"}");
+    List<?> terms = result[0];
+    assertEquals(3, terms.size());
+  }
+
+  @Test
+  public void testCreateTermsWithLiteralText() throws Exception {
+    QueryParser parser = new QueryParser();
+    List<?>[] result = parser.createTerms("\"London is beautiful\"");
+    List<?> terms = result[0];
+    assertEquals(3, terms.size());
+    Term t0 = (Term) terms.get(0);
+    Term t2 = (Term) terms.get(2);
+    assertEquals("London", t0.text());
+    assertEquals("beautiful", t2.text());
+  }
+
+  @Test
+  public void testNeedValidationIsFalseForSingleToken() throws Exception {
+    QueryParser parser = new QueryParser();
+    parser.parse("content", "{Token}", "Token", null, null);
+    assertFalse(parser.needValidation());
+  }
+
+  @Test
+  public void testNeedValidationIsTrueForComplexPhrase() throws Exception {
+    QueryParser parser = new QueryParser();
+    parser.parse("content", "{Token} \"hello\" {Person.gender==\"male\"}", "Token", null, null);
+    assertTrue(parser.needValidation());
+  }
+
+  @Test
+  public void testGetQueryStringReturnsCorrectString() throws Exception {
+    QueryParser parser = new QueryParser();
+    parser.parse("content", "{Token}", "Token", null, null);
+    String qStr = parser.getQueryString(0);
+    assertNotNull(qStr);
+    assertTrue(qStr.contains("Token"));
+  }
+}
+
+
+===== Invalid Test Methods Detected =====
+
+// Invalid Test: testPrintEmptyAnnotation
+@Test
+  public void testPrintEmptyAnnotation() throws IOException {
+    Annotation annotation = new Annotation("");
+    ByteArrayOutputStream os = new ByteArrayOutputStream();
+    JSONOutputter.Options options = new JSONOutputter.Options();
+    new JSONOutputter().print(annotation, os, options);
+    String result = os.toString("UTF-8");
+    assertNotNull(result);
+    assertTrue(result.contains("{"));
+  }
+
+  @Test
+  public void testDocLevelMetadata() throws IOException {
+    Annotation annotation = new Annotation("Test document");
+    annotation.set(CoreAnnotations.DocIDAnnotation.class, "doc123");
+    annotation.set(CoreAnnotations.DocDateAnnotation.class, "2024-04-01");
+    annotation.set(CoreAnnotations.AuthorAnnotation.class, "Tester");
+
+    ByteArrayOutputStream os = new ByteArrayOutputStream();
+    JSONOutputter.Options options = new JSONOutputter.Options();
+    options.includeText = true;
+    new JSONOutputter().print(annotation, os, options);
+    String json = os.toString("UTF-8");
+
+    assertTrue(json.contains("\"docId\": \"doc123\""));
+    assertTrue(json.contains("\"docDate\": \"2024-04-01\""));
+    assertTrue(json.contains("\"author\": \"Tester\""));
+    assertTrue(json.contains("\"text\": \"Test document\""));
+  }
+
+  @Test
+  public void testTokenSerialization() throws IOException {
+    CoreLabel token = new CoreLabel();
+    token.setWord("Hello");
+    token.setOriginalText("Hello");
+    token.setIndex(1);
+    token.setBeginPosition(0);
+    token.setEndPosition(5);
+    token.set(CoreAnnotations.PartOfSpeechAnnotation.class, "UH");
+    token.set(CoreAnnotations.NamedEntityTagAnnotation.class, "O");
+
+    List<CoreLabel> tokens = new ArrayList<>();
+    tokens.add(token);
+
+    Annotation doc = new Annotation("Hello");
+    doc.set(CoreAnnotations.TokensAnnotation.class, tokens);
+
+    ByteArrayOutputStream os = new ByteArrayOutputStream();
+    JSONOutputter.Options options = new JSONOutputter.Options();
+    new JSONOutputter().print(doc, os, options);
+    String json = os.toString("UTF-8");
+
+    assertTrue(json.contains("\"word\": \"Hello\""));
+    assertTrue(json.contains("\"pos\": \"UH\""));
+    assertTrue(json.contains("\"ner\": \"O\""));
+  }
+
+  @Test
+  public void testSentimentSerialization() throws IOException {
+    CoreMap sentence = new Annotation("Great!");
+    Tree sentimentTree = Tree.valueOf("(2 (2 Great))");
+    sentence.set(SentimentCoreAnnotations.SentimentAnnotatedTree.class, sentimentTree);
+    sentence.set(SentimentCoreAnnotations.SentimentClass.class, "Positive");
+
+    List<CoreMap> sentences = new ArrayList<>();
+    sentences.add(sentence);
+
+    Annotation doc = new Annotation("Great!");
+    doc.set(CoreAnnotations.SentencesAnnotation.class, sentences);
+
+    ByteArrayOutputStream os = new ByteArrayOutputStream();
+    JSONOutputter.Options options = new JSONOutputter.Options();
+    new JSONOutputter().print(doc, os, options);
+
+    String json = os.toString("UTF-8");
+
+    assertTrue(json.contains("\"sentiment\": \"Positive\""));
+    assertTrue(json.contains("\"sentimentValue\""));
+    assertTrue(json.contains("\"sentimentTree\""));
+  }
+
+  @Test
+  public void testOpenIETriples() throws IOException {
+    CoreMap sentence = new Annotation("John loves Mary.");
+    RelationTriple triple = new RelationTriple(
+        Arrays.asList(new CoreLabel()), Arrays.asList(new CoreLabel()), Arrays.asList(new CoreLabel()),
+        1.0, null, null);
+    triple.setSubjectLemmas(Arrays.asList("John"));
+    triple.setRelationLemmas(Arrays.asList("loves"));
+    triple.setObjectLemmas(Arrays.asList("Mary"));
+
+    Collection<RelationTriple> triples = new ArrayList<>();
+    triples.add(triple);
+    sentence.set(NaturalLogicAnnotations.RelationTriplesAnnotation.class, triples);
+
+    List<CoreMap> sentences = new ArrayList<>();
+    sentences.add(sentence);
+
+    Annotation doc = new Annotation("John loves Mary.");
+    doc.set(CoreAnnotations.SentencesAnnotation.class, sentences);
+
+    ByteArrayOutputStream os = new ByteArrayOutputStream();
+    JSONOutputter.Options options = new JSONOutputter.Options();
+    new JSONOutputter().print(doc, os, options);
+
+    String json = os.toString("UTF-8");
+    assertTrue(json.contains("\"subject\""));
+    assertTrue(json.contains("\"relation\""));
+    assertTrue(json.contains("\"object\""));
+  }
+
+  @Test
+  public void testCorefChains() throws IOException {
+    CorefChain.CorefMention mention1 = new CorefChain.CorefMention(1, 0, 0, 1, "John", true, 1, 0, 1, 0, null, null, null, null);
+    List<CorefChain.CorefMention> mentions = new ArrayList<>();
+    mentions.add(mention1);
+    CorefChain chain = new CorefChain(1, mentions);
+
+    Map<Integer, CorefChain> corefMap = new HashMap<>();
+    corefMap.put(1, chain);
+
+    Annotation doc = new Annotation("John went to the store. He bought apples.");
+    doc.set(CorefCoreAnnotations.CorefChainAnnotation.class, corefMap);
+
+    ByteArrayOutputStream os = new ByteArrayOutputStream();
+    JSONOutputter.Options options = new JSONOutputter.Options();
+    new JSONOutputter().print(doc, os, options);
+
+    String json = os.toString("UTF-8");
+
+    assertTrue(json.contains("\"corefs\""));
+    assertTrue(json.contains("\"isRepresentativeMention\""));
+  }
+
+  @Test
+  public void testJsonWriterEscaping() {
+    String result = JSONOutputter.JSONWriter.objectToJSON(writer -> {
+      writer.set("quote", "\"double quotes\"");
+      writer.set("newline", "Line\nBreak");
+    });
+
+    assertTrue(result.contains("\\\"double quotes\\\""));
+    assertTrue(result.contains("Line\\nBreak"));
+  }
+
+  @Test
+  public void testManualJsonPrintStaticMethod() throws IOException {
+    Annotation annotation = new Annotation("Simple text.");
+    String json = JSONOutputter.jsonPrint(annotation);
+    assertNotNull(json);
+    assertTrue(json.contains("{"));
+  }
+
+  @Test
+  public void testJsonPrintWithOptions() throws IOException {
+    Annotation annotation = new Annotation("Hello NLP world.");
+    annotation.set(CoreAnnotations.DocIDAnnotation.class, "test001");
+
+    OutputStream os = new ByteArrayOutputStream();
+    JSONOutputter.Options options = new JSONOutputter.Options();
+    options.pretty = true;
+    JSONOutputter.jsonPrint(annotation, os, options);
+    String output = os.toString();
+
+    assertTrue(output.contains("docId"));
+    assertTrue(output.contains("test001"));
+    assertTrue(output.contains("\n"));
+  }
+}
+

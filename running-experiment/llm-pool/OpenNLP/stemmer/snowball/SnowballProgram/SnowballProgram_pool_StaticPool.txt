@@ -1,0 +1,51 @@
+Hello, world!
+The quick brown fox jumps over the lazy dog.
+Can you believe it's already 2023?
+I'm going to the store; do you need anything?
+She asked, 'Where are you going?'
+Don't stop believing!
+Running late again, aren't we?
+Let's meet at 5:30 p.m. on Tuesday.
+Wait... what just happened?
+The rain in Spain stays mainly in the plain.
+I have 2 cats and 1 dog.
+Well, that's just great!
+This is a test sentence for NLP tasks.
+E=mc^2 is Einstein's famous equation.
+Go!
+I saw Mr. Smith on 5th Avenue.
+He said, “That’s not my car.”
+This sentence contains a URL: https://example.com
+Call me at (555) 123-4567.
+Why not try something new today?
+U.S.A. is a country; so is the U.K.
+I'm feeling 100% ready for the exam.
+New York-based startups are booming.
+I'd've gone if you'd told me!
+She's the CEO of a Fortune 500 company.
+Is it raining in San Francisco?
+Stop! Thief!
+He's going to Harvard University.
+I paid $19.99 for that book.
+Please RSVP by 10th October 2024.
+Do you know the muffin man?
+The AI said: 'I am intelligent.'
+Happy birthday!!!
+Meet me at Café de l'Art at noon.
+He earned a Ph.D. in Computer Science.
+She’s been running every morning.
+The temperature is -5°C today.
+I love Java, Python, and C++.
+They've been married since 1990.
+Welcome, everyone, to the annual gala.
+We'll arrive at approximately 03:45 a.m.
+COVID-19 changed the world in 2020.
+Let's test some edge-case, punctuation-filled, complex sentences!!!
+Dr. Who is a famous British TV show.
+Don't forget to press Ctrl+Alt+Del if it freezes.
+You’re not serious—are you?
+My email is test.user@example.com.
+I owe you $50.00 from last week.
+'Twas the night before Christmas.
+A sentence with emojis 😊👍💡.
+My password is P@ssw0rd!123.

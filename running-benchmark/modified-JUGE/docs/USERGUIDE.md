@@ -1,0 +1,214 @@
+# User guide
+
+## Try it via Docker (to run the following commands in servers we suggest to use [GNU Screen](https://www.gnu.org/software/screen) or [tmux](https://github.com/tmux/tmux))
+
+For easier access and use, we have dockerized the contest infrastructure. Here are the instructions for testing your tool via docker:
+
+### Prerequisites
+
+Install the docker software on your machine. Docker is available for Linux, MacOS, and Windows. For installation please follow the instructions for your operating system:
+- Windows: https://docs.docker.com/desktop/install/windows-install/
+- Mac: https://docs.docker.com/desktop/install/mac-install/
+- Linux/Ubuntu: https://docs.docker.com/engine/install/ubuntu/#extra-steps-for-aufs
+
+Additionally, you will need [JDK 8](https://github.com/AdoptOpenJDK/openjdk8-binaries/releases/tag/jdk8u292-b10) and [Apache Maven](https://maven.apache.org) to build some utility projects that would later be used in the Docker image.
+
+### Get the infrastructure
+
+```shell script
+git clone https://github.com/JUnitContest/JUGE junitcontest
+cd junitcontest
+```
+
+### Build the Docker image
+
+First, build the tools used in the Docker image:
+
+```shell script
+cd junitcontest
+
+mvn install:install-file \
+   -Dfile=tools/bbc/lib/evosuite-bbc.jar \
+   -DgroupId=nl.tudelft \
+   -DartifactId=evosuite-bbc \
+   -Dversion=0.0.1 \
+   -Dpackaging=jar \
+   -DgeneratePom=true
+
+mvn package
+```
+
+This should produce the following artifacts:
+- `benchmarktool/target/benchmarktool-1.0.0-shaded.jar`
+- `benchmarktool/target/benchmarktool-1.0.0-jar-with-dependencies.jar`
+
+Then, run the following command from the root directory to build the docker image:
+
+```shell script
+cd junitcontest
+docker build -f Dockerfile -t junitcontest/infrastructure:latest .
+```
+
+It will produce a Docker image with the benchmark located at [`infrastructure/benchmarks`](../infrastructure/benchmarks). To change the classes under test, simply update [`infrastructure/benchmarks`](../infrastructure/benchmarks). For instance, with the CUTs of a previous edition of the competition available in [`infrastructure/`](../infrastructure/).
+
+### Running a tool
+
+The command to run the docker image that contains the junit contest infrastructure is the following:
+
+```shell script
+docker run \
+  -v /path/to/host/folder:/path/to/container/folder \
+  --name=junitcontest \
+  -it junitcontest/infrastructure:latest
+```
+
+where
+
+* `-v`: it is needed to specify the tool folder in the host machine that needs to be attached to the docker container. For example:
+
+```shell script
+docker run \
+  -v $(pwd)/tools/randoop:/home/randoop \
+  --name=junitcontest \
+  -it junitcontest/infrastructure:latest
+```
+
+The `randoop` folder under the tools folder in host machine is mapped to the `randoop` folder under the home folder in the docker container (guest). The `randoop` folder in the host machine is shared with the container, therefore every file written in this folder will be in both the host and the guest machines.
+
+* `--name=junitcontest`: it is the name of the container (`junitcontest` in this case). The name is optional, if skipped Docker assigns a random name automatically.
+
+* `-it`: it means that the user can access the docker container interactively, as if the user was in the command line of the guest system.
+
+* `junitcontest/infrastructure:latest`: it is the name of the docker image. The first time the command is run, Docker tries automatically to download the image from a public repository. Once the image is in the system, docker simply uses it. You can also build the Docker image following the [procedure described here above](#build-the-docker-image).
+
+In case a container with the same name is already running and you want to remove it:
+
+```shell script
+docker container ls
+docker container stop $(docker container ls -aq)
+docker system prune
+docker container ls
+```
+
+Once you execute the docker run command, you are in the docker container. Move to the container folder where you mapped the tool, using the `-v` option (in the example is `/home/randoop`). The tool folder must meet the requirements specified in [DETAILS.md](DETAILS.md) . For an example of a correct tool folder please see: [RANDOOP](/tools/randoop).
+
+If the tool satisfies the requirements, **run from the tool folder** (e.g., `/home/randoop`) in the container:
+
+```shell script
+contest_generate_tests.sh \
+  <tool-name> \
+  <runs-number> \
+  <runs-start-from> \
+  <time-budget-seconds>
+```
+
+For example:
+
+```shell script
+contest_generate_tests.sh randoop 1 1 30
+```
+
+This script runs one execution of the test generation tool `randoop` for 10 seconds.
+
+As the generation goes on, you should see files written in the shared folder in the host machine (in the example `$(pwd)/tools/randoop`).
+
+### Compute metrics
+
+To compute the metrics (i.e., coverage and mutation score) for the test cases generated by the command in the previous example, run the following command, **run from the tool same directory** (e.g., `/home/randoop`):
+
+```shell script
+contest_compute_metrics.sh results_randoop_30 > stat_log.txt 2> error_log.txt
+```
+
+Note that the folder `results_randoop_10` is automatically generated by the `contest_generate_tests.sh` script and contains, among other things, the test cases generated.
+
+### Test Cases Generated and Statistical results:
+
+```
+Test Cases generated
+- results_randoop_10 -> *Project name* ->    temp -> testcases
+
+Results stored:
+- results_randoop_10 -> *Project name* -> metrics -> transcript.csv
+- results_randoop_10 -> *Project name* -> metrics -> log_detailed.txt
+```
+
+### How to leverage several copies of the docker image of the infrustructure (e.g., to experiment with different time budgets or tools)
+
+We show example of steps for Randoop with 3 different time budgets and 10 runs. 
+Each of the following run executes in its own copy of the randoop/ folder (randoop60, randoop180, and randoop300)
+
+1) Commands to clone the container in the local repository with tag 2021:
+
+```shell script
+docker commit junitcontest junitcontest:2021
+```
+
+2) Docker image for 60 seconds time budget (a similar command for 180 and 300 can be executed)
+
+```shell script
+docker run \
+  -v ~/Desktop/randoop60/:/home/randoop \
+  --name=junitcontest60 \
+  -it junitcontest:2021
+```
+
+3) As previously seen, in the container, execute for 60 seconds time budget (a similar command for 180 and 300 can be executed after creating corresponding images):
+
+```shell script
+contest_generate_tests.sh randoop 10 1 60
+contest_compute_metrics.sh results_randoop_60 > stat_log.txt 2> error_log.txt
+```
+
+### Other commands
+
+Once you are done, you can exit from the container by running:
+
+```shell script
+exit
+```
+
+The command brings you back to the host machine.
+
+Optionally you can remove the container by running:
+
+```shell script
+docker rm <container-name>
+```
+
+For the example, run:
+
+```shell script
+docker rm junitcontest
+```
+
+Other useful docker commands:
+
+```shell script
+docker ps: shows all running containers
+docker ps -a: shows all containers (in every status)
+```
+
+## Try it via manual installation
+
+You can also install the contest infrastructure directly on your machine and test your tool. Below you find basic information and detailed instructions.
+
+Target: Linux (Ubuntu x64)
+
+Folder contents:
+
+* [bin](/infrastructure):   Contest infrastructure binaries
+* [src](/):   Contest infrastructure source code
+* [tools](/tools): Contest tools
+
+Requirements:
+
+Java8 (JDK):
+
+```shell script
+apt-get install default-jdk
+```
+
+Installation instructions:
+
+For detailed instructions see [DETAILS.md](/DETAILS.md)

@@ -1,0 +1,50 @@
+Hello world!
+I love programming in Java.
+What time is it?
+The quick brown fox jumps over the lazy dog.
+She sells seashells by the seashore.
+Why did the chicken cross the road?
+This is a test sentence for natural language processing.
+Can you believe it?
+I have 2 cats and 1 dog.
+They're going to the market, aren't they?
+Let's meet at 5:00 p.m. tomorrow.
+He’s the best player on the team!
+U.S.A. is a country in North America.
+Molecular biology is fascinating.
+The temperature is -5 degrees Celsius today.
+COVID-19 has impacted global travel.
+Amazon’s earnings exceeded expectations this quarter.
+Visit www.example.com for more information.
+I'll be there ASAP.
+This isn't what I expected.
+Wow, that's amazing!
+Don't forget to bring your notebook, pen, and calculator.
+I'm feeling a bit under the weather today.
+NLP stands for Natural Language Processing.
+The Eiffel Tower is located in Paris, France.
+Can you send me the file by EOD?
+She asked, 'Where are you going?'
+The car, which was red, sped down the highway.
+FYI, the meeting has been moved to Friday.
+42 is the answer to life, the universe, and everything.
+The café serves the best espresso.
+He yelled, 'Watch out!' as the ball flew toward me.
+Dr. Smith will see you at 3:15 p.m.
+He's been running—nonstop—for over an hour.
+One-third of the participants disagreed.
+Happy birthday!
+Are you sure that's a valid JSON format?
+Mr. and Mrs. Smith are arriving tonight.
+The password must contain @ and a number.
+Tomorrow's forecast: sunny, with a high of 75°F.
+This test-case should include hyphens and punctuation.
+Don't panic—everything is under control.
+Can AI truly understand semantics?
+We're meeting at No. 5, King's Road.
+The project's deadline is March 15th, 2022.
+Où est la bibliothèque?
+¡Hola! ¿Cómo estás?
+彼は昨日新しい車を買いました。
+#ThrowbackThursday was trending all day.
+The emoji 😊 expresses happiness.

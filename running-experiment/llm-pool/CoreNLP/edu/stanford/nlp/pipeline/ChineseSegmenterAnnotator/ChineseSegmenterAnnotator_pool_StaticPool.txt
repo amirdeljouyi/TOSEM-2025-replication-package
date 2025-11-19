@@ -1,0 +1,51 @@
+John loves programming in Java.
+The quick brown fox jumps over the lazy dog.
+I can't believe it's already raining again!
+Is this the real life or just fantasy?
+My email is john.doe@example.com.
+Call me at (123) 456-7890 after lunch.
+Dr. Smith will see you at 3 p.m.
+He said, 'I'll be there soon.'
+The Eiffel Tower is located in Paris, France.
+What time does the train to New York leave?
+The temperature is 98.6°F today.
+Can you name three U.S. presidents?
+She bought 2 apples, 5 bananas, and 1 mango.
+Let's meet at the café on Main Street.
+Do UFOs really exist?
+NASA launched a new satellite yesterday.
+Bonjour, comment ça va?
+Ich liebe dich.
+This costs $19.99, excluding tax.
+Wait—did you lock the door?
+She earned a Ph.D. in linguistics.
+The package weighs 3.5 kg.
+Warning: Slippery when wet!
+He screamed, 'Watch out!'
+This is version 2.1.4 of the software.
+How many kilometers are in a mile?
+Time flies when you're having fun.
+She danced gracefully across the stage.
+New York City has over 8 million residents.
+The user entered an incorrect password.
+I'll meet you at 5:30 p.m. sharp.
+He scored 95% on the exam!
+The password must contain at least 1 uppercase letter.
+I've read 'To Kill a Mockingbird' three times.
+¿Dónde está la biblioteca?
+His license plate number is ABC-1234.
+They're going to the movies tonight.
+Rain, rain, go away!
+Yes, I received your message—thank you.
+Firefighters saved the cat from the tree.
+There are 365.25 days in a year.
+She whispered, 'It's a secret.'
+Your order number is #000123.
+Can HTML tags affect NLP parsing?
+The class begins at 08:00 hours.
+Beijing is the capital of China.
+The winner is Mr. Michael O'Leary.
+Let’s go hiking this weekend!
+COVID-19 affected global economies.
+The final score was 3–2 after extra time.
+'Don't stop believing,' said the DJ.

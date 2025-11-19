@@ -1,0 +1,52 @@
+Hello, how are you doing today?
+The quick brown fox jumps over the lazy dog.
+Can you believe it's already 2024?
+He asked, 'Where are the keys?' before leaving.
+We're meeting at the café at 5 p.m., aren't we?
+I love programming in Java!
+Dr. Smith will see you at 3 o'clock.
+It's 57°F outside and raining lightly.
+They visited www.example.com for further instructions.
+I ordered two large pizzas and a soda.
+I can't wait to visit New York in the summer!
+Happiness is a warm puppy.
+Wait—did you see that?
+This... is unexpected.
+Let's test sentence splitting, tokenization, and POS tagging.
+A $5 discount applies to all orders above $50.
+My e-mail address is test@example.com, feel free to write.
+What's the weather like in São Paulo today?
+The train leaves at 09:15 sharp.
+Call 1-800-555-0199 for more information.
+Although it was raining, we went hiking.
+In 1492, Columbus sailed the ocean blue.
+‘Good morning!’ she said with a cheerful tone.
+The 2nd edition of the book includes a new chapter.
+NASA launched the Mars rover on July 30, 2020.
+Yes, she speaks French, Spanish, and German fluently.
+Hmm... I'm not sure what to think.
+My favorite movie is “The Grand Budapest Hotel.”
+Don't forget to bring your ID, umbrella, and notebook.
+He ran 5 miles, swam 2 kilometers, and biked 10.
+LOL! That was hilarious 😂
+Could you send me the PDF report by 10 a.m. tomorrow?
+The variable x = 10 increases by 1 each loop.
+$3.99 is the price for each item.
+‘Bonjour!’ is how you say ‘hello’ in French.
+This sentence contains a URL: https://www.test.com/path?query=123
+Python, Java, and C++ are widely-used programming languages.
+She was born on the 4th of July in the U.S.
+Turn left on Baker Street and then merge onto I-95.
+Mr. and Mrs. Johnson will attend the gala.
+‘Run!’ he shouted, while pointing toward the smoke.
+The poem ends with the line, 'And miles to go before I sleep.’
+Between 3–5 people were expected, but 10 showed up.
+Temperature varies from 20°C in the morning to 35°C by noon.
+The file was saved as report_final_v3.pdf.
+Time flies—it's already been two years!
+The phrase 'machine learning' appears multiple times.
+Unicode is important: Привет, 你好, مرحبا, नमस्ते.
+#ThrowbackThursday is trending on Twitter!
+The e-commerce site features a ‘Buy Now’ button.
+Let's summarize: accuracy was 92.3%, precision was 90.1%.
+✈️ Flight LH123 departs at 22:45 from Gate A3.

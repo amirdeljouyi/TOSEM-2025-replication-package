@@ -1,0 +1,51 @@
+Hello, world!
+What's the weather like today?
+I can't believe it's already Friday.
+The quick brown fox jumps over the lazy dog.
+She said, 'I'm going to the store.'
+Is he coming to the party tonight?
+New York City is known as the Big Apple.
+I'm walking to the gym after work.
+Let's test some contraction parsing.
+Why don't you try restarting your computer?
+Dr. Smith will arrive at 3:00 p.m.
+Will you buy milk, eggs, and bread?
+Mrs. Robinson teaches third grade.
+They've been waiting for hours.
+We'll need to postpone the meeting.
+I've seen that movie three times already.
+Can you believe it's snowing in April?
+He ran 5 miles and swam 20 laps.
+The Eiffel Tower is located in Paris.
+Don't forget to call your mom!
+My favorite animals are giraffes, elephants, and pandas.
+It's been raining all week long.
+I'm not sure whether to stay or go.
+Their house is bigger than ours.
+Its fur is softer than silk.
+There are 10 students in the classroom.
+Although he was tired, he kept working diligently.
+Reading books often increases your vocabulary.
+Do zebras live in Africa or Asia?
+Tomorrow, I'll start my diet.
+The cat, which was black and white, slept peacefully.
+He didn't know she'd already left.
+Some people prefer tea; others prefer coffee.
+The analysis of the data revealed surprising trends.
+She'll bring dessert, won't she?
+Aren't we supposed to be there by noon?
+The temperature rose to 35° Celsius today.
+Wow! That performance was incredible!
+Call me when you're done.
+I didn't expect such a brilliant outcome.
+Everyone was shocked—completely shocked—by the announcement.
+He whispered, 'Don't tell anyone.'
+They're going hiking in the Rockies next week.
+We could've done better with more time.
+The package was delivered to Mr. and Mrs. Jones.
+Running, swimming, and biking are all great workouts.
+Can somebody explain what happened here?
+Turn left at the next intersection, then stop.
+She wore a bright red coat in the snow.
+Despite the traffic, he arrived on time.
+Each of the students submitted their projects on time.

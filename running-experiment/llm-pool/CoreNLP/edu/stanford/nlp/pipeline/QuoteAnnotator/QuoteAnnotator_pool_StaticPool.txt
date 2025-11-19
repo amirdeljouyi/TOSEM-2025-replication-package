@@ -1,0 +1,51 @@
+Can you help me find the nearest bookstore?
+What time does the train to Chicago leave?
+The quick brown fox jumps over the lazy dog.
+I bought 3 apples, 2 bananas, and 5 oranges today.
+It's raining heavily in New York.
+Let's meet at 5:00 p.m. near the Central Park entrance.
+She said, 'I'll be there in 10 minutes.'
+Dr. Smith will see you now.
+Isn't this a wonderful day to test NLP models?
+My email address is john.doe@example.com.
+The cost of the item is $49.99, plus tax.
+I’ve never seen anything like that before!
+Turn off the lights when you leave.
+We’re going hiking in the Rockies this weekend.
+The meeting has been rescheduled to Thursday.
+I can’t believe it’s already October!
+Who wrote the novel 'Pride and Prejudice'?
+How many countries are in the European Union?
+The temperature dropped to -5°C overnight.
+‘Wow,’ she exclaimed, ‘that’s amazing!’
+This is sentence number twenty of fifty.
+I'm planning a trip to Tokyo next summer.
+Yes, I agree with your proposal.
+Could you please send me the report by Monday?
+He runs five miles every morning before breakfast.
+The Eiffel Tower is located in Paris.
+Why is NLP considered a challenging field?
+I love programming in Java, Python, and C++.
+There are 24 hours in a day and 60 minutes in an hour.
+The sunrise today was absolutely beautiful.
+I've read that book three times already.
+Shall we begin the presentation now?
+There’s a typo in the second paragraph.
+Wow! That was an incredible performance.
+I'll have the veggie burger with fries, please.
+Time flies when you're having fun.
+I don’t know whether to stay or leave.
+Attention: This area is under video surveillance.
+Please fill out Form 1040 before April 15.
+The password must contain at least 8 characters.
+There were 150 attendees at the conference.
+Do UFOs really exist, or is it just speculation?
+Don't forget to water the plants while I'm away.
+What a strange-looking animal that is!
+It's commonly known as a split infinitive.
+He arrived at 9:45 a.m., precisely on time.
+Learning Java takes time, patience, and practice.
+My phone number is (555) 123-4567.
+We'll be hosting the event on January 14th, 2024.
+The cat sat on the mat, completely uninterested.
+“To be, or not to be,” is a line from Hamlet.

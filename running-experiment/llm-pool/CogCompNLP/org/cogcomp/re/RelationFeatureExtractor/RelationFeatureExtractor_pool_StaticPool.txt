@@ -1,0 +1,50 @@
+Hello world.
+The quick brown fox jumps over the lazy dog.
+I love natural language processing!
+Can you tell me the time?
+She sells seashells by the seashore.
+What's the weather like today?
+The Eiffel Tower is in Paris.
+I ate breakfast at 7:00 A.M.
+U.S.A. is abbreviated with periods.
+'I'm coming,' he said.
+It’s 10 degrees outside.
+This is version 2.1.3 of the program.
+1234567890 is a number.
+Dr. Smith is a renowned scientist.
+Let’s meet at 5 p.m. on Friday.
+On December 25, people celebrate Christmas.
+This should be tokenized properly!
+Don't forget to RSVP.
+The company’s IPO was successful.
+How are you doing today?
+Apple Inc. was founded by Steve Jobs.
+To be, or not to be: that is the question.
+Wait—what did you say?
+C'est la vie!
+Goodbye! Have a nice day.
+Ms. Johnson left early.
+Coordinates are: 40.7128° N, 74.0060° W.
+Are you hungry, tired, or bored?
+I can’t believe it’s already Monday.
+Wow!!! That was amazing!!!
+She asked, 'Do you want some tea?'
+The code is open-source (under MIT License).
+COVID-19 changed how we work remotely.
+Use a hyphen in twenty-one.
+He is a well-known author.
+Stop. Look. Listen.
+Would you like coffee, tea, or juice?
+Yes, I’m aware of that.
+St. Patrick’s Day is on March 17.
+I moved from Los Angeles to New York City.
+We paid $50.75 for dinner.
+e.g., apples, bananas, and cherries.
+i.e., in other words, try again.
+Amazing results — really impressive!
+Bring your ID, passport, etc.
+The temperature is 23°C today.
+They live at 10 Downing St.
+Can NLP handle sarcasm? Maybe!
+I’ll arrive at 8:30 AM sharp.
+This—is—an—em-dash—test.

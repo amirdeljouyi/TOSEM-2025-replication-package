@@ -1,0 +1,9 @@
+project,class,src,llm_directory
+OpenNLP,opennlp.tools.ml.maxent.GISTrainer,OpenNLP/opennlp/tools/ml/maxent/GISTrainer,OpenNLP/opennlp/tools/ml/maxent/GISTrainer
+OpenNLP,opennlp.tools.stemmer.PorterStemmer,OpenNLP/opennlp/tools/stemmer/PorterStemmer,OpenNLP/opennlp/tools/stemmer/PorterStemmer
+OpenNLP,opennlp.tools.stemmer.snowball.greekStemmer,OpenNLP/opennlp/tools/stemmer/snowball/greekStemmer,OpenNLP/opennlp/tools/stemmer/snowball/greekStemmer
+OpenNLP,opennlp.tools.stemmer.snowball.arabicStemmer,OpenNLP/opennlp/tools/stemmer/snowball/arabicStemmer,OpenNLP/opennlp/tools/stemmer/snowball/arabicStemmer
+OpenNLP,opennlp.tools.stemmer.snowball.SnowballProgram,OpenNLP/opennlp/tools/stemmer/snowball/SnowballProgram,OpenNLP/opennlp/tools/stemmer/snowball/SnowballProgram
+OpenNLP,opennlp.tools.stemmer.snowball.SnowballStemmer,OpenNLP/opennlp/tools/stemmer/snowball/SnowballStemmer,OpenNLP/opennlp/tools/stemmer/snowball/SnowballStemmer
+OpenNLP,opennlp.tools.parser.Parse,OpenNLP/opennlp/tools/parser/Parse,OpenNLP/opennlp/tools/parser/Parse
+OpenNLP,opennlp.tools.ngram.NGramModel,OpenNLP/opennlp/tools/ngram/NGramModel,OpenNLP/opennlp/tools/ngram/NGramModel

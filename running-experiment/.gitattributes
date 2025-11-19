@@ -1,0 +1,2 @@
+binary/CogCompNLP/lib/stanford-corenlp-3.3.1-models.jar filter=lfs diff=lfs merge=lfs -text
+binary/CogCompNLP/lib/stanford-corenlp-3.8.0-models.jar filter=lfs diff=lfs merge=lfs -text

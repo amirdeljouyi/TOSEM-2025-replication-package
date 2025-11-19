@@ -1,0 +1,113 @@
+{
+OpenNLP-1=
+{
+  src=/var/benchmarks/projects/OpenNLP/src
+  bin=/var/benchmarks/projects/OpenNLP/opennlp-tools/target/classes
+  classes=(
+    opennlp.tools.ml.maxent.GISTrainer
+  )
+
+  classpath=(
+    /var/benchmarks/projects/OpenNLP/target/classes,
+    /var/benchmarks/projects/OpenNLP/target/opennlp-tools-2.3.3.jar
+  )
+}
+
+OpenNLP-2=
+{
+  src=/var/benchmarks/projects/OpenNLP/src
+  bin=/var/benchmarks/projects/OpenNLP/opennlp-tools/target/classes
+  classes=(
+    opennlp.tools.stemmer.PorterStemmer
+  )
+
+  classpath=(
+    /var/benchmarks/projects/OpenNLP/target/classes,
+    /var/benchmarks/projects/OpenNLP/target/opennlp-tools-2.3.3.jar
+  )
+}
+
+OpenNLP-3=
+{
+  src=/var/benchmarks/projects/OpenNLP/src
+  bin=/var/benchmarks/projects/OpenNLP/opennlp-tools/target/classes
+  classes=(
+    opennlp.tools.stemmer.snowball.greekStemmer
+  )
+
+  classpath=(
+    /var/benchmarks/projects/OpenNLP/target/classes,
+    /var/benchmarks/projects/OpenNLP/target/opennlp-tools-2.3.3.jar
+  )
+}
+
+OpenNLP-4=
+{
+  src=/var/benchmarks/projects/OpenNLP/src
+  bin=/var/benchmarks/projects/OpenNLP/opennlp-tools/target/classes
+  classes=(
+    opennlp.tools.stemmer.snowball.arabicStemmer
+  )
+
+  classpath=(
+    /var/benchmarks/projects/OpenNLP/target/classes,
+    /var/benchmarks/projects/OpenNLP/target/opennlp-tools-2.3.3.jar
+  )
+}
+
+OpenNLP-5=
+{
+  src=/var/benchmarks/projects/OpenNLP/src
+  bin=/var/benchmarks/projects/OpenNLP/opennlp-tools/target/classes
+  classes=(
+    opennlp.tools.stemmer.snowball.SnowballProgram
+  )
+
+  classpath=(
+    /var/benchmarks/projects/OpenNLP/target/classes,
+    /var/benchmarks/projects/OpenNLP/target/opennlp-tools-2.3.3.jar
+  )
+}
+
+OpenNLP-6=
+{
+  src=/var/benchmarks/projects/OpenNLP/src
+  bin=/var/benchmarks/projects/OpenNLP/opennlp-tools/target/classes
+  classes=(
+    opennlp.tools.stemmer.snowball.SnowballStemmer
+  )
+
+  classpath=(
+    /var/benchmarks/projects/OpenNLP/target/classes,
+    /var/benchmarks/projects/OpenNLP/target/opennlp-tools-2.3.3.jar
+  )
+}
+
+OpenNLP-7=
+{
+  src=/var/benchmarks/projects/OpenNLP/src
+  bin=/var/benchmarks/projects/OpenNLP/opennlp-tools/target/classes
+  classes=(
+    opennlp.tools.parser.Parse
+  )
+
+  classpath=(
+    /var/benchmarks/projects/OpenNLP/target/classes,
+    /var/benchmarks/projects/OpenNLP/target/opennlp-tools-2.3.3.jar
+  )
+}
+
+OpenNLP-8=
+{
+  src=/var/benchmarks/projects/OpenNLP/src
+  bin=/var/benchmarks/projects/OpenNLP/opennlp-tools/target/classes
+  classes=(
+    opennlp.tools.ngram.NGramModel
+  )
+
+  classpath=(
+    /var/benchmarks/projects/OpenNLP/target/classes,
+    /var/benchmarks/projects/OpenNLP/target/opennlp-tools-2.3.3.jar
+  )
+}
+}

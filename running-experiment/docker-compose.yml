@@ -1,0 +1,8 @@
+version: '3.9'
+
+services:
+  experiment-runner:
+    image: llmsuite-nlp-image   # <-- Use the name of your prebuilt image
+    container_name: experiment-runner
+    entrypoint: [ "bash", "/app/run-experiment.sh" ]
+    command: [ "llmsuite"]  # <-- Replace with your actual args or override at runtime

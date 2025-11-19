@@ -1,0 +1,52 @@
+John loves Mary.
+It is raining cats and dogs.
+Can you pass me the salt?
+The quick brown fox jumps over the lazy dog.
+Paris is the capital of France.
+She went to the market to buy fresh vegetables.
+I've never seen such a beautiful sunset.
+They are playing soccer in the park.
+My phone battery died unexpectedly.
+He studies computer science at the university.
+What time does the train arrive?
+The cat chased the mouse under the table.
+This is a test sentence for natural language processing.
+I emailed the report to the team yesterday.
+The children were laughing at the clown’s antics.
+Please close the window before it gets too cold.
+Do you know where she lives?
+I can't believe it's already September.
+The teacher gave us homework for the weekend.
+He ran faster than anyone else in the race.
+She sings beautifully in the school choir.
+Why did you cancel the meeting?
+Despite the rain, the match continued as scheduled.
+I love programming in Java.
+Turn off the lights when you leave the room.
+The novel was more interesting than the movie.
+Where did you buy that jacket?
+She said she'd arrive by 10 am.
+The baby is sleeping – don't make any noise.
+That's the best pizza I've ever had!
+We’ll go hiking if it doesn’t rain tomorrow.
+The system crashed during the file transfer.
+How many languages do you speak?
+Running every morning improves your health.
+The man who called you is my uncle.
+Alice and Bob met for coffee at noon.
+We visited the Grand Canyon on our vacation.
+The forecast says it will snow tonight.
+The king ruled the land with kindness.
+You should reconsider your decision.
+He painted the walls blue and gray.
+The book on the table belongs to Sarah.
+I saw a fox near the woods last night.
+This app helps me track my expenses easily.
+She suddenly remembered his birthday was today.
+Have you seen my keys anywhere?
+The flight was delayed due to fog.
+Learning Java takes time and practice.
+Let's meet at the cafe on 5th street.
+Everyone applauded at the end of the concert.
+Although tired, he continued studying all night.
+Nothing beats a good cup of coffee in the morning.

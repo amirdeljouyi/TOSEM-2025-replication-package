@@ -1,0 +1,51 @@
+Hello, world!
+The quick brown fox jumps over the lazy dog.
+What's the weather like today?
+I can't believe it's already Friday!
+She sells sea shells by the sea shore.
+Turn off the lights when you leave.
+Don't forget to call your mother.
+Dr. Smith is arriving at 10:30 a.m.
+Can you pass me the salt, please?
+I'm heading to New York next week.
+The Eiffel Tower is located in Paris.
+This is a test sentence for tokenization.
+Why did the chicken cross the road?
+Your appointment is scheduled for 3:15 PM.
+It's raining cats and dogs!
+He said, 'I'll be there soon.'
+Let's meet at the café on 5th Street.
+NASA launched a new satellite yesterday.
+Congratulations! You've won a prize.
+I've never seen anything like it before.
+Please read the instructions carefully.
+I'm allergic to peanuts and shellfish.
+The restaurant received five stars on Yelp.
+A stitch in time saves nine.
+OpenAI created ChatGPT, a powerful language model.
+Is it going to snow tomorrow?
+My favorite color is turquoise.
+The boy who cried wolf was not believed.
+Sri Lanka is an island country in South Asia.
+The engine starts with a loud roar.
+She whispered, 'Don't tell anyone.'
+2 + 2 equals 4.
+My username is user_12345!
+Couldn't you just email me instead?
+After she ate dinner, she went for a walk.
+C++ and Java are both object-oriented languages.
+He bought apples, oranges, and bananas.
+The temperature dropped below zero last night.
+Keep off the grass.
+Whoa! That was unexpected.
+First come, first served.
+The dog barked loudly at the mailman.
+I’m going to the gym at 6:00 AM.
+She has two Ph.D.s and an M.D.
+A rolling stone gathers no moss.
+The whale weighed over 30 tons.
+Happy birthday, Grandma!
+Time flies when you're having fun.
+The meeting starts at noon sharp.
+Email me at example@test.com.
+I'm writing unit tests for natural language processing.

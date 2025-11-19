@@ -1,0 +1,494 @@
+{
+CoreNLP-1=
+{
+  src=/var/benchmarks/projects/CoreNLP/src
+  bin=/var/benchmarks/projects/CoreNLP/target/classes
+  classes=(
+    edu.stanford.nlp.parser.lexparser.ExhaustivePCFGParser
+  )
+
+  classpath=(
+    /var/benchmarks/projects/CoreNLP/target/classes,/var/benchmarks/projects/CoreNLP/target/stanford-corenlp-4.5.7.jar,/var/benchmarks/projects/CoreNLP/target/ejml-simple-0.39.jar
+  )
+}
+CoreNLP-2=
+{
+  src=/var/benchmarks/projects/CoreNLP/src
+  bin=/var/benchmarks/projects/CoreNLP/target/classes
+  classes=(
+    edu.stanford.nlp.pipeline.CorefAnnotator
+  )
+
+  classpath=(
+    /var/benchmarks/projects/CoreNLP/target/classes,/var/benchmarks/projects/CoreNLP/target/stanford-corenlp-4.5.7.jar,/var/benchmarks/projects/CoreNLP/target/ejml-simple-0.39.jar
+  )
+}
+CoreNLP-3=
+{
+  src=/var/benchmarks/projects/CoreNLP/src
+  bin=/var/benchmarks/projects/CoreNLP/target/classes
+  classes=(
+    edu.stanford.nlp.pipeline.CorefMentionAnnotator
+  )
+
+  classpath=(
+    /var/benchmarks/projects/CoreNLP/target/classes,/var/benchmarks/projects/CoreNLP/target/stanford-corenlp-4.5.7.jar,/var/benchmarks/projects/CoreNLP/target/ejml-simple-0.39.jar
+  )
+}
+CoreNLP-4=
+{
+  src=/var/benchmarks/projects/CoreNLP/src
+  bin=/var/benchmarks/projects/CoreNLP/target/classes
+  classes=(
+    edu.stanford.nlp.pipeline.ChineseSegmenterAnnotator
+  )
+
+  classpath=(
+    /var/benchmarks/projects/CoreNLP/target/classes,/var/benchmarks/projects/CoreNLP/target/stanford-corenlp-4.5.7.jar,/var/benchmarks/projects/CoreNLP/target/ejml-simple-0.39.jar
+  )
+}
+CoreNLP-5=
+{
+  src=/var/benchmarks/projects/CoreNLP/src
+  bin=/var/benchmarks/projects/CoreNLP/target/classes
+  classes=(
+    edu.stanford.nlp.pipeline.JSONOutputter
+  )
+
+  classpath=(
+    /var/benchmarks/projects/CoreNLP/target/classes,/var/benchmarks/projects/CoreNLP/target/stanford-corenlp-4.5.7.jar,/var/benchmarks/projects/CoreNLP/target/ejml-simple-0.39.jar
+  )
+}
+CoreNLP-6=
+{
+  src=/var/benchmarks/projects/CoreNLP/src
+  bin=/var/benchmarks/projects/CoreNLP/target/classes
+  classes=(
+    edu.stanford.nlp.pipeline.LabeledChunkIdentifier
+  )
+
+  classpath=(
+    /var/benchmarks/projects/CoreNLP/target/classes,/var/benchmarks/projects/CoreNLP/target/stanford-corenlp-4.5.7.jar,/var/benchmarks/projects/CoreNLP/target/ejml-simple-0.39.jar
+  )
+}
+CoreNLP-7=
+{
+  src=/var/benchmarks/projects/CoreNLP/src
+  bin=/var/benchmarks/projects/CoreNLP/target/classes
+  classes=(
+    edu.stanford.nlp.sentiment.SentimentModel
+  )
+
+  classpath=(
+    /var/benchmarks/projects/CoreNLP/target/classes,/var/benchmarks/projects/CoreNLP/target/stanford-corenlp-4.5.7.jar,/var/benchmarks/projects/CoreNLP/target/ejml-simple-0.39.jar
+  )
+}
+CoreNLP-8=
+{
+  src=/var/benchmarks/projects/CoreNLP/src
+  bin=/var/benchmarks/projects/CoreNLP/target/classes
+  classes=(
+    edu.stanford.nlp.parser.lexparser.EnglishTreebankParserParams
+  )
+
+  classpath=(
+    /var/benchmarks/projects/CoreNLP/target/classes,/var/benchmarks/projects/CoreNLP/target/stanford-corenlp-4.5.7.jar,/var/benchmarks/projects/CoreNLP/target/ejml-simple-0.39.jar
+  )
+}
+CoreNLP-9=
+{
+  src=/var/benchmarks/projects/CoreNLP/src
+  bin=/var/benchmarks/projects/CoreNLP/target/classes
+  classes=(
+    edu.stanford.nlp.pipeline.ParserAnnotator
+  )
+
+  classpath=(
+    /var/benchmarks/projects/CoreNLP/target/classes,/var/benchmarks/projects/CoreNLP/target/stanford-corenlp-4.5.7.jar,/var/benchmarks/projects/CoreNLP/target/ejml-simple-0.39.jar
+  )
+}
+CoreNLP-10=
+{
+  src=/var/benchmarks/projects/CoreNLP/src
+  bin=/var/benchmarks/projects/CoreNLP/target/classes
+  classes=(
+    edu.stanford.nlp.process.PTBTokenizer
+  )
+
+  classpath=(
+    /var/benchmarks/projects/CoreNLP/target/classes,/var/benchmarks/projects/CoreNLP/target/stanford-corenlp-4.5.7.jar,/var/benchmarks/projects/CoreNLP/target/ejml-simple-0.39.jar
+  )
+}
+CoreNLP-11=
+{
+  src=/var/benchmarks/projects/CoreNLP/src
+  bin=/var/benchmarks/projects/CoreNLP/target/classes
+  classes=(
+    edu.stanford.nlp.pipeline.MorphaAnnotator
+  )
+
+  classpath=(
+    /var/benchmarks/projects/CoreNLP/target/classes,/var/benchmarks/projects/CoreNLP/target/stanford-corenlp-4.5.7.jar,/var/benchmarks/projects/CoreNLP/target/ejml-simple-0.39.jar
+  )
+}
+CoreNLP-12=
+{
+  src=/var/benchmarks/projects/CoreNLP/src
+  bin=/var/benchmarks/projects/CoreNLP/target/classes
+  classes=(
+    edu.stanford.nlp.pipeline.NERCombinerAnnotator
+  )
+
+  classpath=(
+    /var/benchmarks/projects/CoreNLP/target/classes,/var/benchmarks/projects/CoreNLP/target/stanford-corenlp-4.5.7.jar,/var/benchmarks/projects/CoreNLP/target/ejml-simple-0.39.jar
+  )
+}
+CoreNLP-13=
+{
+  src=/var/benchmarks/projects/CoreNLP/src
+  bin=/var/benchmarks/projects/CoreNLP/target/classes
+  classes=(
+    edu.stanford.nlp.pipeline.TokensRegexNERAnnotator
+  )
+
+  classpath=(
+    /var/benchmarks/projects/CoreNLP/target/classes,/var/benchmarks/projects/CoreNLP/target/stanford-corenlp-4.5.7.jar,/var/benchmarks/projects/CoreNLP/target/ejml-simple-0.39.jar
+  )
+}
+CoreNLP-14=
+{
+  src=/var/benchmarks/projects/CoreNLP/src
+  bin=/var/benchmarks/projects/CoreNLP/target/classes
+  classes=(
+    edu.stanford.nlp.pipeline.QuoteAnnotator
+  )
+
+  classpath=(
+    /var/benchmarks/projects/CoreNLP/target/classes,/var/benchmarks/projects/CoreNLP/target/stanford-corenlp-4.5.7.jar,/var/benchmarks/projects/CoreNLP/target/ejml-simple-0.39.jar
+  )
+}
+CoreNLP-15=
+{
+  src=/var/benchmarks/projects/CoreNLP/src
+  bin=/var/benchmarks/projects/CoreNLP/target/classes
+  classes=(
+    edu.stanford.nlp.pipeline.QuoteAttributionAnnotator
+  )
+
+  classpath=(
+    /var/benchmarks/projects/CoreNLP/target/classes,/var/benchmarks/projects/CoreNLP/target/stanford-corenlp-4.5.7.jar,/var/benchmarks/projects/CoreNLP/target/ejml-simple-0.39.jar
+  )
+}
+CoreNLP-16=
+{
+  src=/var/benchmarks/projects/CoreNLP/src
+  bin=/var/benchmarks/projects/CoreNLP/target/classes
+  classes=(
+    edu.stanford.nlp.pipeline.StanfordCoreNLP
+  )
+
+  classpath=(
+    /var/benchmarks/projects/CoreNLP/target/classes,/var/benchmarks/projects/CoreNLP/target/stanford-corenlp-4.5.7.jar,/var/benchmarks/projects/CoreNLP/target/ejml-simple-0.39.jar
+  )
+}
+CoreNLP-17=
+{
+  src=/var/benchmarks/projects/CoreNLP/src
+  bin=/var/benchmarks/projects/CoreNLP/target/classes
+  classes=(
+    edu.stanford.nlp.pipeline.EntityMentionsAnnotator
+  )
+
+  classpath=(
+    /var/benchmarks/projects/CoreNLP/target/classes,/var/benchmarks/projects/CoreNLP/target/stanford-corenlp-4.5.7.jar,/var/benchmarks/projects/CoreNLP/target/ejml-simple-0.39.jar
+  )
+}
+CoreNLP-18=
+{
+  src=/var/benchmarks/projects/CoreNLP/src
+  bin=/var/benchmarks/projects/CoreNLP/target/classes
+  classes=(
+    edu.stanford.nlp.pipeline.TokenizerAnnotator
+  )
+
+  classpath=(
+    /var/benchmarks/projects/CoreNLP/target/classes,/var/benchmarks/projects/CoreNLP/target/stanford-corenlp-4.5.7.jar,/var/benchmarks/projects/CoreNLP/target/ejml-simple-0.39.jar
+  )
+}
+CoreNLP-19=
+{
+  src=/var/benchmarks/projects/CoreNLP/src
+  bin=/var/benchmarks/projects/CoreNLP/target/classes
+  classes=(
+    edu.stanford.nlp.pipeline.POSTaggerAnnotator
+  )
+
+  classpath=(
+    /var/benchmarks/projects/CoreNLP/target/classes,/var/benchmarks/projects/CoreNLP/target/stanford-corenlp-4.5.7.jar,/var/benchmarks/projects/CoreNLP/target/ejml-simple-0.39.jar
+  )
+}
+CoreNLP-20=
+{
+  src=/var/benchmarks/projects/CoreNLP/src
+  bin=/var/benchmarks/projects/CoreNLP/target/classes
+  classes=(
+    edu.stanford.nlp.pipeline.CoreDocument
+  )
+
+  classpath=(
+    /var/benchmarks/projects/CoreNLP/target/classes,/var/benchmarks/projects/CoreNLP/target/stanford-corenlp-4.5.7.jar,/var/benchmarks/projects/CoreNLP/target/ejml-simple-0.39.jar
+  )
+}
+CoreNLP-21=
+{
+  src=/var/benchmarks/projects/CoreNLP/src
+  bin=/var/benchmarks/projects/CoreNLP/target/classes
+  classes=(
+    edu.stanford.nlp.pipeline.CoreSentence
+  )
+
+  classpath=(
+    /var/benchmarks/projects/CoreNLP/target/classes,/var/benchmarks/projects/CoreNLP/target/stanford-corenlp-4.5.7.jar,/var/benchmarks/projects/CoreNLP/target/ejml-simple-0.39.jar
+  )
+}
+CoreNLP-22=
+{
+  src=/var/benchmarks/projects/CoreNLP/src
+  bin=/var/benchmarks/projects/CoreNLP/target/classes
+  classes=(
+    edu.stanford.nlp.pipeline.SentimentAnnotator
+  )
+
+  classpath=(
+    /var/benchmarks/projects/CoreNLP/target/classes,/var/benchmarks/projects/CoreNLP/target/stanford-corenlp-4.5.7.jar,/var/benchmarks/projects/CoreNLP/target/ejml-simple-0.39.jar
+  )
+}
+CoreNLP-23=
+{
+  src=/var/benchmarks/projects/CoreNLP/src
+  bin=/var/benchmarks/projects/CoreNLP/target/classes
+  classes=(
+    edu.stanford.nlp.pipeline.KBPAnnotator
+  )
+
+  classpath=(
+    /var/benchmarks/projects/CoreNLP/target/classes,/var/benchmarks/projects/CoreNLP/target/stanford-corenlp-4.5.7.jar,/var/benchmarks/projects/CoreNLP/target/ejml-simple-0.39.jar
+  )
+}
+CoreNLP-24=
+{
+  src=/var/benchmarks/projects/CoreNLP/src
+  bin=/var/benchmarks/projects/CoreNLP/target/classes
+  classes=(
+    edu.stanford.nlp.pipeline.CleanXmlAnnotator
+  )
+
+  classpath=(
+    /var/benchmarks/projects/CoreNLP/target/classes,/var/benchmarks/projects/CoreNLP/target/stanford-corenlp-4.5.7.jar,/var/benchmarks/projects/CoreNLP/target/ejml-simple-0.39.jar
+  )
+}
+CoreNLP-25=
+{
+  src=/var/benchmarks/projects/CoreNLP/src
+  bin=/var/benchmarks/projects/CoreNLP/target/classes
+  classes=(
+    edu.stanford.nlp.pipeline.WordsToSentencesAnnotator
+  )
+
+  classpath=(
+    /var/benchmarks/projects/CoreNLP/target/classes,/var/benchmarks/projects/CoreNLP/target/stanford-corenlp-4.5.7.jar,/var/benchmarks/projects/CoreNLP/target/ejml-simple-0.39.jar
+  )
+}
+CoreNLP-26=
+{
+  src=/var/benchmarks/projects/CoreNLP/src
+  bin=/var/benchmarks/projects/CoreNLP/target/classes
+  classes=(
+    edu.stanford.nlp.pipeline.WikidictAnnotator
+  )
+
+  classpath=(
+    /var/benchmarks/projects/CoreNLP/target/classes,/var/benchmarks/projects/CoreNLP/target/stanford-corenlp-4.5.7.jar,/var/benchmarks/projects/CoreNLP/target/ejml-simple-0.39.jar
+  )
+}
+CoreNLP-27=
+{
+  src=/var/benchmarks/projects/CoreNLP/src
+  bin=/var/benchmarks/projects/CoreNLP/target/classes
+  classes=(
+    edu.stanford.nlp.pipeline.GenderAnnotator
+  )
+
+  classpath=(
+    /var/benchmarks/projects/CoreNLP/target/classes,/var/benchmarks/projects/CoreNLP/target/stanford-corenlp-4.5.7.jar,/var/benchmarks/projects/CoreNLP/target/ejml-simple-0.39.jar
+  )
+}
+CoreNLP-28=
+{
+  src=/var/benchmarks/projects/CoreNLP/src
+  bin=/var/benchmarks/projects/CoreNLP/target/classes
+  classes=(
+    edu.stanford.nlp.pipeline.ArabicSegmenterAnnotator
+  )
+
+  classpath=(
+    /var/benchmarks/projects/CoreNLP/target/classes,/var/benchmarks/projects/CoreNLP/target/stanford-corenlp-4.5.7.jar,/var/benchmarks/projects/CoreNLP/target/ejml-simple-0.39.jar
+  )
+}
+CoreNLP-29=
+{
+  src=/var/benchmarks/projects/CoreNLP/src
+  bin=/var/benchmarks/projects/CoreNLP/target/classes
+  classes=(
+    edu.stanford.nlp.pipeline.SentenceAnnotator
+  )
+
+  classpath=(
+    /var/benchmarks/projects/CoreNLP/target/classes,/var/benchmarks/projects/CoreNLP/target/stanford-corenlp-4.5.7.jar,/var/benchmarks/projects/CoreNLP/target/ejml-simple-0.39.jar
+  )
+}
+CoreNLP-32=
+{
+  src=/var/benchmarks/projects/CoreNLP/src
+  bin=/var/benchmarks/projects/CoreNLP/target/classes
+  classes=(
+    edu.stanford.nlp.pipeline.ProtobufAnnotationSerializer
+  )
+
+  classpath=(
+    /var/benchmarks/projects/CoreNLP/target/classes,/var/benchmarks/projects/CoreNLP/target/stanford-corenlp-4.5.7.jar,/var/benchmarks/projects/CoreNLP/target/ejml-simple-0.39.jar
+  )
+}
+CoreNLP-33=
+{
+  src=/var/benchmarks/projects/CoreNLP/src
+  bin=/var/benchmarks/projects/CoreNLP/target/classes
+  classes=(
+    edu.stanford.nlp.process.Morphology
+  )
+
+  classpath=(
+    /var/benchmarks/projects/CoreNLP/target/classes,/var/benchmarks/projects/CoreNLP/target/stanford-corenlp-4.5.7.jar,/var/benchmarks/projects/CoreNLP/target/ejml-simple-0.39.jar
+  )
+}
+CoreNLP-34=
+{
+  src=/var/benchmarks/projects/CoreNLP/src
+  bin=/var/benchmarks/projects/CoreNLP/target/classes
+  classes=(
+    edu.stanford.nlp.process.Stemmer
+  )
+
+  classpath=(
+    /var/benchmarks/projects/CoreNLP/target/classes,/var/benchmarks/projects/CoreNLP/target/stanford-corenlp-4.5.7.jar,/var/benchmarks/projects/CoreNLP/target/ejml-simple-0.39.jar
+  )
+}
+CoreNLP-35=
+{
+  src=/var/benchmarks/projects/CoreNLP/src
+  bin=/var/benchmarks/projects/CoreNLP/target/classes
+  classes=(
+    edu.stanford.nlp.process.WordToSentenceProcessor
+  )
+
+  classpath=(
+    /var/benchmarks/projects/CoreNLP/target/classes,/var/benchmarks/projects/CoreNLP/target/stanford-corenlp-4.5.7.jar,/var/benchmarks/projects/CoreNLP/target/ejml-simple-0.39.jar
+  )
+}
+CoreNLP-37=
+{
+  src=/var/benchmarks/projects/CoreNLP/src
+  bin=/var/benchmarks/projects/CoreNLP/target/classes
+  classes=(
+    edu.stanford.nlp.parser.lexparser.ChineseTreebankParserParams
+  )
+
+  classpath=(
+    /var/benchmarks/projects/CoreNLP/target/classes,/var/benchmarks/projects/CoreNLP/target/stanford-corenlp-4.5.7.jar,/var/benchmarks/projects/CoreNLP/target/ejml-simple-0.39.jar
+  )
+}
+CoreNLP-38=
+{
+  src=/var/benchmarks/projects/CoreNLP/src
+  bin=/var/benchmarks/projects/CoreNLP/target/classes
+  classes=(
+    edu.stanford.nlp.parser.lexparser.LexicalizedParser
+  )
+
+  classpath=(
+    /var/benchmarks/projects/CoreNLP/target/classes,/var/benchmarks/projects/CoreNLP/target/stanford-corenlp-4.5.7.jar,/var/benchmarks/projects/CoreNLP/target/ejml-simple-0.39.jar
+  )
+}
+CoreNLP-40=
+{
+  src=/var/benchmarks/projects/CoreNLP/src
+  bin=/var/benchmarks/projects/CoreNLP/target/classes
+  classes=(
+    edu.stanford.nlp.parser.lexparser.SplittingGrammarExtractor
+  )
+
+  classpath=(
+    /var/benchmarks/projects/CoreNLP/target/classes,/var/benchmarks/projects/CoreNLP/target/stanford-corenlp-4.5.7.jar,/var/benchmarks/projects/CoreNLP/target/ejml-simple-0.39.jar
+  )
+}
+CoreNLP-41=
+{
+  src=/var/benchmarks/projects/CoreNLP/src
+  bin=/var/benchmarks/projects/CoreNLP/target/classes
+  classes=(
+    edu.stanford.nlp.ling.CoreLabel
+  )
+
+  classpath=(
+    /var/benchmarks/projects/CoreNLP/target/classes,/var/benchmarks/projects/CoreNLP/target/stanford-corenlp-4.5.7.jar,/var/benchmarks/projects/CoreNLP/target/ejml-simple-0.39.jar
+  )
+}
+CoreNLP-42=
+{
+  src=/var/benchmarks/projects/CoreNLP/src
+  bin=/var/benchmarks/projects/CoreNLP/target/classes
+  classes=(
+    edu.stanford.nlp.coref.data.Mention
+  )
+
+  classpath=(
+    /var/benchmarks/projects/CoreNLP/target/classes,/var/benchmarks/projects/CoreNLP/target/stanford-corenlp-4.5.7.jar,/var/benchmarks/projects/CoreNLP/target/ejml-simple-0.39.jar
+  )
+}
+CoreNLP-43=
+{
+  src=/var/benchmarks/projects/CoreNLP/src
+  bin=/var/benchmarks/projects/CoreNLP/target/classes
+  classes=(
+    edu.stanford.nlp.dcoref.Mention
+  )
+
+  classpath=(
+    /var/benchmarks/projects/CoreNLP/target/classes,/var/benchmarks/projects/CoreNLP/target/stanford-corenlp-4.5.7.jar,/var/benchmarks/projects/CoreNLP/target/ejml-simple-0.39.jar
+  )
+}
+CoreNLP-44=
+{
+  src=/var/benchmarks/projects/CoreNLP/src
+  bin=/var/benchmarks/projects/CoreNLP/target/classes
+  classes=(
+    edu.stanford.nlp.ie.NERFeatureFactory
+  )
+
+  classpath=(
+    /var/benchmarks/projects/CoreNLP/target/classes,/var/benchmarks/projects/CoreNLP/target/stanford-corenlp-4.5.7.jar,/var/benchmarks/projects/CoreNLP/target/ejml-simple-0.39.jar
+  )
+}
+CoreNLP-46=
+{
+  src=/var/benchmarks/projects/CoreNLP/src
+  bin=/var/benchmarks/projects/CoreNLP/target/classes
+  classes=(
+    edu.stanford.nlp.sentiment.SentimentPipeline
+  )
+
+  classpath=(
+    /var/benchmarks/projects/CoreNLP/target/classes,/var/benchmarks/projects/CoreNLP/target/stanford-corenlp-4.5.7.jar,/var/benchmarks/projects/CoreNLP/target/ejml-simple-0.39.jar
+  )
+}
+}

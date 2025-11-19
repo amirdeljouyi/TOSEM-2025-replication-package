@@ -1,0 +1,52 @@
+Hello, world!
+The quick brown fox jumps over the lazy dog.
+Can you help me with my homework?
+It's raining heavily outside.
+The Eiffel Tower is located in Paris.
+What's your favorite color?
+She bought apples, bananas, and oranges from the market.
+I saw a man with a telescope.
+I love Java programming!
+Dr. Smith and Mr. Jones visited Washington, D.C. last summer.
+Call me at 555-1234.
+Meet me at 6 p.m. on Tuesday.
+Wow! That was amazing!
+This isn't what I expected.
+Isn't it wonderful?
+Go!
+Run, run, as fast as you can!
+They're planning a trip to New York.
+There are 24 hours in a day.
+I've never seen anything like it.
+Do you know where he went?
+My email is john.doe@example.com.
+Prices range from $5.99 to $20.00.
+NASA launched a new satellite on Oct. 12, 2022.
+It's 72°F outside.
+He said, \
+
+I can't believe it's already December.
+I owe you $50.
+Turn left at the next intersection.
+First, wash your hands. Then, dry them with a clean towel.
+The boy, who was only five years old, could read fluently.
+He won the race, although he was tired.
+She smiled—just barely—even though it hurt.
+Let's meet at Joe's Café at noon.
+The files are located in C:\\Users\\John\\Documents.
+¡Hola! ¿Cómo estás?
+100 people attended the event.
+I'm looking forward to the weekend.
+Wait... what just happened?
+He didn't know whether to laugh or cry.
+It's not just about speed; it's about accuracy.
+Bring the following: notebook, pen, and ID.
+I can't go there, can I?
+He whispered, 'Don't tell anyone.'
+Someone's at the door.
+Please RSVP by Friday.
+She has a B.A. in English and an M.A. in Linguistics.
+The temperature dropped to -5°C last night.
+Let's test NLP functionalities like tokenization, POS tagging, and NER.
+U.S.A. and U.K. have different spelling norms.
+Google was founded on September 4, 1998.

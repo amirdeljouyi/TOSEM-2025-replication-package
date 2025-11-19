@@ -1,0 +1,101 @@
+Project,Src,#,Functionality,Main API
+CoreNLP,edu.stanford.nlp.pipeline.KBPAnnotator,23,Coreference,TRUE
+CogComp-NLP,org.cogcomp.md.MentionAnnotator,9,Coreference,FALSE
+CoreNLP,edu.stanford.nlp.coref.data.Mention,42,Coreference,FALSE
+CoreNLP,edu.stanford.nlp.dcoref.Mention,43,Coreference,FALSE
+CoreNLP,edu.stanford.nlp.pipeline.CorefAnnotator,2,Coreference,TRUE
+CoreNLP,edu.stanford.nlp.pipeline.CorefMentionAnnotator,3,Coreference,TRUE
+CoreNLP,edu.stanford.nlp.pipeline.QuoteAttributionAnnotator,15,Coreference,TRUE
+CoreNLP,edu.stanford.nlp.pipeline.EntityMentionsAnnotator,17,Coreference,TRUE
+Gate-Core,gate.corpora.DocumentImpl,3,DataStructure,FALSE
+Gate-Core,gate.annotation.AnnotationSetImpl,5,DataStructure,FALSE
+CogComp-NLP,edu.illinois.cs.cogcomp.comma.datastructures.Comma,1,DataStructure,FALSE
+CoreNLP,edu.stanford.nlp.ling.CoreLabel,41,DataStructure,FALSE
+CoreNLP,edu.stanford.nlp.pipeline.CoreDocument,20,DataStructure,FALSE
+CoreNLP,edu.stanford.nlp.pipeline.CoreSentence,21,DataStructure,TRUE
+Gate-Core,gate.corpora.CorpusImpl,2,DataStructure,FALSE
+Mallet,cc.mallet.types.SparseVector,1,DataStructure,FALSE
+CogComp-NLP,edu.illinois.cs.cogcomp.ner.ClassifiersAndUtils.MemoryEfficientNB,2,Linguistic Labeling,FALSE
+CogComp-NLP,edu.illinois.cs.cogcomp.ner.NERAnnotator,3,Linguistic Labeling,FALSE
+CogComp-NLP,org.cogcomp.re.RelationFeatureExtractor,8,Information Extraction,FALSE
+CoreNLP,edu.stanford.nlp.ie.NERFeatureFactory,44,Linguistic Labeling,FALSE
+CoreNLP,edu.stanford.nlp.pipeline.NERCombinerAnnotator,12,Linguistic Labeling,TRUE
+CoreNLP,edu.stanford.nlp.pipeline.TokensRegexNERAnnotator,13,Linguistic Labeling,TRUE
+CoreNLP,edu.stanford.nlp.pipeline.SentenceAnnotator,29,Linguistic Labeling,TRUE
+CoreNLP,edu.stanford.nlp.pipeline.POSTaggerAnnotator,19,Linguistic Labeling,TRUE
+opennlp,opennlp.tools.namefind.NameFinderME,13,Information Extraction,
+Mallet,cc.mallet.topics.LDAHyper,13,Topic Modelling,FALSE
+CoreNLP,edu.stanford.nlp.pipeline.SentimentAnnotator,22,Linguistic Labeling,TRUE
+CoreNLP,edu.stanford.nlp.pipeline.WikidictAnnotator,26,Information Extraction,TRUE
+CoreNLP,edu.stanford.nlp.sentiment.SentimentModel,7,Linguistic Labeling,FALSE
+CoreNLP,edu.stanford.nlp.pipeline.GenderAnnotator,27,Information Extraction,
+Gate-Core,gate.annotation.CorpusAnnotationDiff,10,DataStructure,FALSE
+CoreNLP,edu.stanford.nlp.sentiment.SentimentPipeline,46,Linguistic Labeling,FALSE
+Gate-Core,gate.creole.CreoleRegisterImpl,9,DataStructure,TRUE
+Gate-Core,gate.corpora.SerialCorpusImpl,1,DataStructure,TRUE
+opennlp,opennlp.tools.postag.POSTaggerFactory,14,Linguistic Labeling,
+Mallet,cc.mallet.classify.MaxEnt,4,ML Algorithms,FALSE
+Mallet,cc.mallet.topics.TopicInferencer,16,Topic Modelling,
+Mallet,cc.mallet.classify.MaxEntOptimizableByLabelLikelihood,5,ML Algorithms,FALSE
+Mallet,cc.mallet.classify.NaiveBayes,3,ML Algorithms,FALSE
+Mallet,cc.mallet.types.AugmentableFeatureVector,2,DataStructure,FALSE
+Mallet,cc.mallet.classify.MaxEntOptimizableByLabelDistribution,6,ML Algorithms,FALSE
+Mallet,cc.mallet.fst.HMM,9,ML Algorithms,FALSE
+Mallet,cc.mallet.classify.NaiveBayesTrainer,7,ML Algorithms,FALSE
+Mallet,cc.mallet.cluster.KMeans,8,ML Algorithms,FALSE
+CogComp-NLP,edu.illinois.cs.cogcomp.pos.MikheevLearner,4,ML Algorithms,FALSE
+CogComp-NLP,edu.illinois.cs.cogcomp.pos.POSBaselineLearner,5,ML Algorithms,FALSE
+CogComp-NLP,edu.illinois.cs.cogcomp.nlp.lemmatizer.IllinoisLemmatizer,13,Normalizer,FALSE
+CoreNLP,edu.stanford.nlp.process.Morphology,33,Normalizer,FALSE
+CoreNLP,edu.stanford.nlp.pipeline.StanfordCoreNLP,16,Linguistic Labeling,TRUE
+CoreNLP,edu.stanford.nlp.pipeline.MorphaAnnotator,11,Normalizer,TRUE
+opennlp,opennlp.tools.stemmer.snowball.greekStemmer,3,Normalizer,
+opennlp,opennlp.tools.ml.maxent.GISTrainer,1,ML Algorithms,FALSE
+opennlp,opennlp.tools.tokenize.TokenizerME,17,Segmentation,
+opennlp,opennlp.tools.stemmer.PorterStemmer,2,Normalizer,
+opennlp,opennlp.tools.stemmer.snowball.arabicStemmer,4,Normalizer,
+CoreNLP,edu.stanford.nlp.pipeline.ParserAnnotator,9,Parser,TRUE
+CoreNLP,edu.stanford.nlp.pipeline.ProtobufAnnotationSerializer,32,Parser,TRUE
+CoreNLP,edu.stanford.nlp.parser.lexparser.ChineseTreebankParserParams,37,Parser,FALSE
+CoreNLP,edu.stanford.nlp.parser.lexparser.EnglishTreebankParserParams,8,Parser,FALSE
+CoreNLP,edu.stanford.nlp.parser.lexparser.ExhaustivePCFGParser,1,Parser,FALSE
+CoreNLP,edu.stanford.nlp.parser.lexparser.LexicalizedParser,38,Parser,FALSE
+CoreNLP,edu.stanford.nlp.parser.lexparser.SplittingGrammarExtractor,40,Parser,FALSE
+CoreNLP,edu.stanford.nlp.process.Stemmer,34,Normalizer,FALSE
+CoreNLP,edu.stanford.nlp.pipeline.QuoteAnnotator,14,Information Extraction,TRUE
+CoreNLP,edu.stanford.nlp.pipeline.ArabicSegmenterAnnotator,28,Segmentation,FALSE
+CoreNLP,edu.stanford.nlp.pipeline.ChineseSegmenterAnnotator,4,Segmentation,FALSE
+Gate-Core,gate.creole.annic.lucene.SubQueryParser,11,Parser,
+CoreNLP,edu.stanford.nlp.pipeline.TokenizerAnnotator,18,Segmentation,TRUE
+CoreNLP,edu.stanford.nlp.process.PTBTokenizer,10,Segmentation,FALSE
+CogComp-NLP,edu.illinois.cs.cogcomp.nlp.tokenizer.TokenizerStateMachine,6,Segmentation,FALSE
+CoreNLP,edu.stanford.nlp.pipeline.LabeledChunkIdentifier,6,Segmentation,FALSE
+CoreNLP,edu.stanford.nlp.pipeline.WordsToSentencesAnnotator,25,Segmentation,TRUE
+Gate-Core,gate.util.CorpusBenchmarkTool,8,ML Algorithms,TRUE
+CogComp-NLP,org.cogcomp.md.BIOReader,7,Parser,FALSE
+CogComp-NLP,org.cogcomp.md.ExtentReader,10,Parser,FALSE
+CoreNLP,edu.stanford.nlp.process.WordToSentenceProcessor,35,Segmentation,FALSE
+Gate-Core,gate.creole.annic.lucene.QueryParser,7,Parser,FALSE
+CoreNLP,edu.stanford.nlp.pipeline.JSONOutputter,5,Parser,TRUE
+CoreNLP,edu.stanford.nlp.pipeline.CleanXmlAnnotator,24,Information Extraction,TRUE
+opennlp,opennlp.tools.stemmer.snowball.SnowballProgram,5,Normalizer,
+opennlp,opennlp.tools.stemmer.snowball.SnowballStemmer,6,Normalizer,
+Mallet,cc.mallet.topics.MultinomialHMM,15,Topic Modelling,
+Mallet,cc.mallet.topics.ParallelTopicModel,12,Topic Modelling,FALSE
+Mallet,cc.mallet.fst.CRF,10,ML Algorithms,FALSE
+Mallet,cc.mallet.fst.SumLatticeBeam,11,ML Algorithms,FALSE
+Gate-Core,gate.annotation.AnnotationImpl,6,DataStructure,
+Gate-Core,gate.corpora.DocumentStaxUtils,4,Parser,FALSE
+opennlp,opennlp.tools.parser.Parse,7,Parser,TRUE
+CogComp-NLP,edu.illinois.cs.cogcomp.quant.driver.Quantifier,14,Linguistic Labeling,
+CogComp-NLP,edu.illinois.cs.cogcomp.core.algorithms.TreeGrep,11,ML Algorithms,
+CogComp-NLP,edu.illinois.cs.cogcomp.llm.comparators.LlmStringComparator,12,Linguistic Labeling,
+CoreNLP,edu.stanford.nlp.pipeline.RelationExtractorAnnotator,30,Information Extraction,
+opennlp,opennlp.tools.langdetect.LanguageDetectorME,11,Topic Modelling,
+opennlp,opennlp.tools.formats.Conll03NameSampleStream,10,Parser,
+opennlp,opennlp.tools.chunker.ChunkerME,9,Segmentation,
+opennlp,opennlp.tools.languagemodel.NGramLanguageModel,12,Topic Modelling,
+opennlp,opennlp.tools.postag.POSTaggerME,15,Linguistic Labeling,
+opennlp,opennlp.tools.sentdetect.SentenceDetectorME,16,Segmentation,
+Mallet,cc.mallet.topics.TopicalNGrams,14,Topic Modelling,FALSE
+opennlp,opennlp.tools.ngram.NGramModel,8,Topic Modelling,

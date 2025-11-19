@@ -1,0 +1,49 @@
+Hello, world!
+How are you doing today?
+The quick brown fox jumps over the lazy dog.
+I can't believe it's already Friday.
+What time does the train arrive?
+The capital of France is Paris.
+She said she would arrive by 6 p.m.
+The file was saved successfully.
+Call me when you get home.
+This is a test sentence for NLP parsing.
+He runs faster than anyone I know.
+They have been working since morning.
+Let’s meet at the coffee shop on 5th Avenue.
+Don't forget to bring your passport!
+Reading books helps improve vocabulary.
+It's raining cats and dogs outside!
+Could you please explain that again?
+Why is the sky blue?
+She bought apples, bananas, and oranges.
+I live in New York.
+'I love programming,' he exclaimed.
+Do penguins live in the Arctic?
+The temperature dropped below freezing.
+My email address is jane.doe@example.com.
+Have you seen my glasses anywhere?
+He played the piano beautifully.
+We’re not going to the beach today.
+NASA launched a new satellite last week.
+I’ll meet you at noon tomorrow.
+Be careful! The floor is wet.
+I saw a movie last night that was incredible.
+He said, 'I'll call you tomorrow.'
+Learning Java can be fun and rewarding.
+Who let the dogs out?
+Turn off the lights before you leave.
+What does HTML stand for?
+It’s 10:45 p.m. already!
+Did she receive the package?
+I was born on April 3rd, 1990.
+There’s a spider on the wall!
+My flight leaves at 6:30 a.m.
+The sun rises in the east and sets in the west.
+That’s the best pizza I’ve ever had.
+Open the window, please.
+Do you know where the nearest ATM is?
+She emailed me the document yesterday.
+The children were playing in the park.
+I need a vacation after this project.
+Where are you going for lunch?
